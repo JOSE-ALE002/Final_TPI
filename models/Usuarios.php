@@ -1,5 +1,4 @@
 <?php
-
 require_once 'database/Conexion.php';
 
 class Usuario extends Conexion
@@ -81,28 +80,33 @@ class Usuario extends Conexion
         return $this->age;
     }
 
-
-    // Acciones de usuario 
     public function login()
-    {        
-        $sql = "SELECT usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol WHERE usuarios.nombre= ?";
+    {
+        $result = false;
 
+        $sql = "SELECT usuarios.email, usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol  WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
-        if ($stmt->execute(array($this->getNombre()))) {
-            $result = $stmt->fetch();
-            // echo "Llegue hasta aca" . $this->getPassword() . "<br>" . count($result);            
-                // echo "No es solo un resultado";
-                if (password_verify($this->getPassword(), $result["pass"])) {                    
+        $stmt->bindValue(":email", $this->getEmail());
+
+        if ($stmt->execute()) {
+            $nRow = $stmt->rowCount();
+            if ($nRow == 1) {
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($this->getPassword(), $result["pass"])) {
                     session_start();
                     $_SESSION["nombre"] = $result["nombre"];
                     $_SESSION["id"] = $result["idUsuario"];                                        
-                    $_SESSION["rol"] = $result["cargo"];                                        
-
-                    header("Location: " . BASE_DIR."Home/home");
-                }else {
-                    header("Location: " . BASE_DIR);
-                }            
-        }        
+                    $_SESSION["rol"] = $result["cargo"]; 
+                    
+                    return true;
+                }
+                else
+                {
+                    $result = false;
+                }
+            }
+        }
+        return $result;
     }
 
     public function logout()
@@ -131,19 +135,26 @@ class Usuario extends Conexion
         header('location:' . BASE_DIR);
     }
 
-    public function save()
-    {        
+    public function signup()
+    {
+        $result = false;
 
-        $sql = "INSERT INTO Usuarios(nombre, apellido, email, direccion, pass)";
-        $sql .= "VALUES(?, ?, ?, ?, ?)";
+        $query = "INSERT INTO usuarios (nombre, apellido, email, direccion, pass)";
+        $query .= "VALUES('".$this->getNombre()."', '".$this->getApellido()."', '".$this->getEmail()."', '".$this->getDireccion()."','".$this->getPassword()."')";
 
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
-        $result = $stmt->execute(array($this->getNombre(), $this->getApellido(), $this->getEmail(), $this->getDireccion(), $this->getPassword()));        
+        $stmt->bindValue(":email", $this->getEmail());
 
-        if($result) {
-            header('location:' . BASE_DIR);
-        } else {
-            echo "Ha ocurrido un error";
-        }        
+        if ($stmt->execute()) {
+            $nRow = $stmt->rowCount();
+            if ($nRow == 1) {
+            }else{
+                if($stmt = $this->conn->query($query)){
+                    $result = true;
+                }
+            }
+        }
+        return $result;
     }
 }

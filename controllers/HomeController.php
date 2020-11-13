@@ -11,12 +11,12 @@ class HomeController
     {
         require_once "views/login.php";
         require_once 'models/Usuarios.php';
-        if ($_POST && isset($_POST["nombre"]) && isset($_POST["contra"])) {
+        if ($_POST && isset($_POST["email"]) && isset($_POST["contra"])) {
             $user = new Usuario();
-            $user->setNombre($_POST["nombre"]);
+            $user->setEmail($_POST["email"]);
             $user->setPassword($_POST["contra"], 2);
 
-            $user->login();                                            
+            return $user->login();                                            
         }         
     }
 
@@ -27,8 +27,9 @@ class HomeController
         $user->logout();
     }
 
-    public function save()
-    {        
+    public function signup()
+    {
+        require_once "views/signup.php";
         require_once "models/Usuarios.php";
 
         if ($_POST && isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["direccion"]) && isset($_POST["email"]) && isset($_POST["contra"])) {
@@ -39,7 +40,7 @@ class HomeController
             $user->setEmail($_POST["email"]);
             $user->setPassword($_POST["contra"], 1);
 
-            $user->save();
+            return $user->signup();
         }
     }
 }

@@ -1,4 +1,3 @@
-<!-- JOSE ALEJANDRO IBAÑEZ MARTINEZ ----------- IM18002   -->
 <?php
 require_once "config/configControllers.php";
 require_once "views/header.php";
