@@ -19,7 +19,7 @@
         <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) { ?>
           <a class="float-right" href="<?= BASE_DIR . "Home/Salir" ?>">Salir</a>
         <?php }else{ ?>
-            <a class="float-right" href="<?= BASE_DIR . "Home/login" ?>">Sign Up</a>
+            <a class="float-right" href="<?= BASE_DIR . "Home/signup" ?>">Sign Up</a>
             <a class="float-right" href="<?= BASE_DIR . "Home/login" ?>">Log In</a>
         <?php } ?>
     </div>
