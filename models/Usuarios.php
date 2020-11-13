@@ -25,14 +25,14 @@ class Usuario extends Conexion
     {
         switch ($clave) {
             case 1: {
-                $this->pass = password_hash($pass, PASSWORD_DEFAULT);
-                break;
-            }
+                    $this->pass = password_hash($pass, PASSWORD_DEFAULT);
+                    break;
+                }
 
             case 2: {
-                $this->pass = $pass;
-                break;
-            }            
+                    $this->pass = $pass;
+                    break;
+                }
         }
     }
 
@@ -84,25 +84,35 @@ class Usuario extends Conexion
 
     // Acciones de usuario 
     public function login()
-    {        
+    {
         $sql = "SELECT usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol WHERE usuarios.nombre= ?";
 
         $stmt = $this->conn->prepare($sql);
         if ($stmt->execute(array($this->getNombre()))) {
             $result = $stmt->fetch();
             // echo "Llegue hasta aca" . $this->getPassword() . "<br>" . count($result);            
-                // echo "No es solo un resultado";
-                if (password_verify($this->getPassword(), $result["pass"])) {                    
-                    session_start();
-                    $_SESSION["nombre"] = $result["nombre"];
-                    $_SESSION["id"] = $result["idUsuario"];                                        
-                    $_SESSION["rol"] = $result["cargo"];                                        
+            // echo "No es solo un resultado";
+            if (password_verify($this->getPassword(), $result["pass"])) {
+                session_start();
+                $_SESSION["nombre"] = $result["nombre"];
+                $_SESSION["id"] = $result["idUsuario"];
+                $_SESSION["rol"] = $result["cargo"];
 
-                    header("Location: " . BASE_DIR."Home/home");
-                }else {
-                    header("Location: " . BASE_DIR);
-                }            
-        }        
+                switch ($_SESSION["rol"]) {
+                    case 'Usuario': {
+                        header("Location: " . BASE_DIR . "Home/home");
+                        break;
+                    }
+
+                    case 'Administrador': {
+                        header("Location: " . BASE_DIR . "Admin/home");
+                        break;
+                    }
+                }
+            }
+        } else {
+            header("Location: " . BASE_DIR);
+        }
     }
 
     public function logout()
@@ -131,19 +141,26 @@ class Usuario extends Conexion
         header('location:' . BASE_DIR);
     }
 
+
+
     public function save()
-    {        
+    {
 
         $sql = "INSERT INTO Usuarios(nombre, apellido, email, direccion, pass)";
         $sql .= "VALUES(?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql);
-        $result = $stmt->execute(array($this->getNombre(), $this->getApellido(), $this->getEmail(), $this->getDireccion(), $this->getPassword()));        
+        $result = $stmt->execute(array($this->getNombre(), $this->getApellido(), $this->getEmail(), $this->getDireccion(), $this->getPassword()));
 
-        if($result) {
+        if ($result) {
             header('location:' . BASE_DIR);
         } else {
             echo "Ha ocurrido un error";
-        }        
+        }
+    }
+
+    public function about()
+    {
+        header("Location: " . BASE_DIR . "Home/about");
     }
 }

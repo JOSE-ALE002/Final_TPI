@@ -42,4 +42,10 @@ class HomeController
             $user->save();
         }
     }
+
+    public function about()
+    {
+        require_once "views/about.php";
+        
+    } 
 }
