@@ -1,5 +1,4 @@
 <?php
-
 require_once 'database/Conexion.php';
 
 class Usuario extends Conexion
@@ -81,27 +80,31 @@ class Usuario extends Conexion
         return $this->age;
     }
 
-
-    // Acciones de usuario 
     public function login()
     {
         $result = false;
 
-        $sql = "SELECT usuarios.email, usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol WHERE usuarios.email= ?";
-
+        $sql = "SELECT usuarios.email, usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol  WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
-        if ($stmt->execute(array($this->getEmail()))) {
-            $result = $stmt->fetch();
-            if (password_verify($this->getPassword(), $result["pass"])) {                    
-                session_start();
-                $_SESSION["nombre"] = $result["nombre"];
-                $_SESSION["id"] = $result["idUsuario"];                                        
-                $_SESSION["rol"] = $result["cargo"];                                        
+        $stmt->bindValue(":email", $this->getEmail());
 
-                $result = true;
-            }else {
-                $result = false;
-            }            
+        if ($stmt->execute()) {
+            $nRow = $stmt->rowCount();
+            if ($nRow == 1) {
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($this->getPassword(), $result["pass"])) {
+                    session_start();
+                    $_SESSION["nombre"] = $result["nombre"];
+                    $_SESSION["id"] = $result["idUsuario"];                                        
+                    $_SESSION["rol"] = $result["cargo"]; 
+                    
+                    return true;
+                }
+                else
+                {
+                    $result = false;
+                }
+            }
         }
         return $result;
     }
@@ -133,24 +136,25 @@ class Usuario extends Conexion
     }
 
     public function signup()
-    {        
+    {
+        $result = false;
 
-        $sql = "INSERT INTO Usuarios(nombre, apellido, email, direccion, pass)";
-        $sql .= "VALUES(?, ?, ?, ?, ?)";
+        $query = "INSERT INTO usuarios (nombre, apellido, email, direccion, pass)";
+        $query .= "VALUES('".$this->getNombre()."', '".$this->getApellido()."', '".$this->getEmail()."', '".$this->getDireccion()."','".$this->getPassword()."')";
 
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
-        $result = $stmt->execute(array($this->getNombre(), $this->getApellido(), $this->getEmail(), $this->getDireccion(), $this->getPassword()));        
+        $stmt->bindValue(":email", $this->getEmail());
 
-        if($result) {
-            var_dump($result);
-            session_start();
-            $_SESSION["nombre"] = $result["nombre"];
-            $_SESSION["id"] = $result["idUsuario"];                                        
-            $_SESSION["rol"] = $result["cargo"];   
-            
-            return true;
-        } else {
-            return false;
-        }        
+        if ($stmt->execute()) {
+            $nRow = $stmt->rowCount();
+            if ($nRow == 1) {
+            }else{
+                if($stmt = $this->conn->query($query)){
+                    $result = true;
+                }
+            }
+        }
+        return $result;
     }
 }

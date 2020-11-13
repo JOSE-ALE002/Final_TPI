@@ -5,13 +5,14 @@
         
         if($signup->signup($_POST["nombre"], $_POST["apellido"], $_POST["direccion"], $_POST["email"], $_POST["contra"]))
         {
-            header("Location: " . BASE_DIR."Home/home");
+            if($signup->login($_POST["email"], $_POST["contra"])){
+                header("Location: " . BASE_DIR."Home/home");
+            }
         }
         else
         {
             $SignupErr = "<p>Error! Correo Registrado</p>";
         }
-        
     }
     else
     {

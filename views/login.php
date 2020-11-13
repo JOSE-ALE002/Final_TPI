@@ -1,4 +1,3 @@
-
 <?php
     if (!empty($_POST) && isset($_POST["email"])) {
         require_once "controllers/HomeController.php";
@@ -12,14 +11,12 @@
         {
             $loginErr = "<p>Error! usuario o contraseña incorrectos</p>";
         }
-        
     }
     else
     {
         $loginErr = "";
     }
 ?>
-
 <main>
     <div class="row">
         <div class="mx-auto col-md-6">
