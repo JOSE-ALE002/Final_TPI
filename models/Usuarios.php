@@ -85,10 +85,10 @@ class Usuario extends Conexion
     // Acciones de usuario 
     public function login()
     {
-        $sql = "SELECT usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol WHERE usuarios.nombre= ?";
+        $sql = "SELECT usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.email, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol WHERE usuarios.email= ?";
 
         $stmt = $this->conn->prepare($sql);
-        if ($stmt->execute(array($this->getNombre()))) {
+        if ($stmt->execute(array($this->getEmail()))) {
             $result = $stmt->fetch();
             // echo "Llegue hasta aca" . $this->getPassword() . "<br>" . count($result);            
             // echo "No es solo un resultado";
@@ -109,10 +109,16 @@ class Usuario extends Conexion
                         break;
                     }
                 }
+            }else {                
+                echo "
+                <script>
+                    document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+                    setTimeout(function() {
+                        document.getElementById('error').innerHTML='';
+                    }, 3000);
+                </script>";
             }
-        } else {
-            header("Location: " . BASE_DIR);
-        }
+        } 
     }
 
     public function logout()

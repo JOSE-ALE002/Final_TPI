@@ -1,7 +1,7 @@
 <div class="row">
     <div class="mx-auto col-md-6">
         <h1>Guardar Usuario</h1>
-        <form action="<?= BASE_DIR ?>Home/save" method="POST">
+        <form action="<?= BASE_DIR ?>Home/signup" method="POST">
             <div class="form-group">
                 <label for="">Nombre</label>
                 <input type="text" name="nombre" class="form-control" placeholder="Ingrese nombre">

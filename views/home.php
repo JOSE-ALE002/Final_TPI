@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION["nombre"])) {
-    header("Location:" . BASE_DIR);
-}
-?>
-
 <main>    
     <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) : ?>        
         <?php if ($_SESSION["rol"] == "Usuario") : ?>
@@ -16,4 +9,6 @@ if (!isset($_SESSION["nombre"])) {
             </div>
         <?php endif ?>
     <?php endif ?>
+
+    <p>Peliculas</p>
 </main>
