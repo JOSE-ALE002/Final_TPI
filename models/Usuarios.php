@@ -89,7 +89,7 @@ class Usuario extends Conexion
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":email", $this->getEmail());
 
-        if ($stmt->execute()) {
+        if ($stmt->execute() == true) {
             $nRow = $stmt->rowCount();
             if ($nRow == 1) {
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -101,34 +101,28 @@ class Usuario extends Conexion
 
                     switch ($_SESSION["rol"]) {
                         case 'Usuario': {
-                            header("Location: " . BASE_DIR . "Home/home");
-                            break;
+                                header("Location: " . BASE_DIR . "Home/home");
+                                break;
                         }
 
                         case 'Administrador': {
-                            header("Location: " . BASE_DIR . "Admin/home");
-                            break;
+                                header("Location: " . BASE_DIR . "Admin/home");
+                                break;
                         }
+
+                        return;
                     }
-                } else {
-                    echo "
-                    <script>
-                        document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
-                        setTimeout(function() {
-                            document.getElementById('error').innerHTML='';
-                        }, 3000);
-                    </script>";
                 }
             }
-        } else {
-            echo "
-            <script>
-                document.getElementById('error').innerHTML='Error! al guardar los datos';
-                setTimeout(function() {
-                    document.getElementById('error').innerHTML='';
-                }, 3000);
-            </script>";
         }
+
+        echo "
+        <script>
+            document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+            setTimeout(function() {
+                document.getElementById('error').innerHTML='';
+            }, 3000);
+        </script>";
     }
 
     public function logout()
