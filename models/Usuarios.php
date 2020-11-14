@@ -85,40 +85,50 @@ class Usuario extends Conexion
     // Acciones de usuario 
     public function login()
     {
-        $sql = "SELECT usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.email, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol WHERE usuarios.email= ?";
-
+        $sql = "SELECT usuarios.email, usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol  WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
-        if ($stmt->execute(array($this->getEmail()))) {
-            $result = $stmt->fetch();
-            // echo "Llegue hasta aca" . $this->getPassword() . "<br>" . count($result);            
-            // echo "No es solo un resultado";
-            if (password_verify($this->getPassword(), $result["pass"])) {
-                session_start();
-                $_SESSION["nombre"] = $result["nombre"];
-                $_SESSION["id"] = $result["idUsuario"];
-                $_SESSION["rol"] = $result["cargo"];
+        $stmt->bindValue(":email", $this->getEmail());
 
-                switch ($_SESSION["rol"]) {
-                    case 'Usuario': {
-                        header("Location: " . BASE_DIR . "Home/home");
-                        break;
-                    }
+        if ($stmt->execute()) {
+            $nRow = $stmt->rowCount();
+            if ($nRow == 1) {
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($this->getPassword(), $result["pass"])) {
+                    session_start();
+                    $_SESSION["nombre"] = $result["nombre"];
+                    $_SESSION["id"] = $result["idUsuario"];
+                    $_SESSION["rol"] = $result["cargo"];
 
-                    case 'Administrador': {
-                        header("Location: " . BASE_DIR . "Admin/home");
-                        break;
+                    switch ($_SESSION["rol"]) {
+                        case 'Usuario': {
+                            header("Location: " . BASE_DIR . "Home/home");
+                            break;
+                        }
+
+                        case 'Administrador': {
+                            header("Location: " . BASE_DIR . "Admin/home");
+                            break;
+                        }
                     }
+                } else {
+                    echo "
+                    <script>
+                        document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+                        setTimeout(function() {
+                            document.getElementById('error').innerHTML='';
+                        }, 3000);
+                    </script>";
                 }
-            }else {                
-                echo "
-                <script>
-                    document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
-                    setTimeout(function() {
-                        document.getElementById('error').innerHTML='';
-                    }, 3000);
-                </script>";
             }
-        } 
+        } else {
+            echo "
+            <script>
+                document.getElementById('error').innerHTML='Error! al guardar los datos';
+                setTimeout(function() {
+                    document.getElementById('error').innerHTML='';
+                }, 3000);
+            </script>";
+        }
     }
 
     public function logout()
