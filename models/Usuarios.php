@@ -92,8 +92,6 @@ class Usuario extends Conexion
 
     public function login()
     {
-        $result = false;
-
         $sql = "SELECT usuarios.email, usuarios.nombre, roles.cargo, usuarios.idUsuario, usuarios.pass FROM usuarios INNER JOIN roles ON usuarios.idRol= roles.idRol  WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":email", $this->getEmail());
@@ -106,17 +104,21 @@ class Usuario extends Conexion
                     session_start();
                     $_SESSION["nombre"] = $result["nombre"];
                     $_SESSION["id"] = $result["idUsuario"];                                        
-                    $_SESSION["rol"] = $result["cargo"]; 
-                    
-                    return true;
-                }
-                else
-                {
-                    $result = false;
+                    $_SESSION["rol"] = $result["cargo"];
+
+                    header("Location: " . BASE_DIR . "Home/home");
+                }else{
+                    return;
                 }
             }
         }
-        return $result;
+        echo "
+        <script>
+            document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+            setTimeout(function() {
+                document.getElementById('error').innerHTML='';
+            }, 3000);
+        </script>";
     }
 
     public function logout()
