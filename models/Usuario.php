@@ -96,17 +96,16 @@ class Usuario extends Conexion
                     $_SESSION["id"] = $result["idUsuario"];                                        
                     $_SESSION["rol"] = $result["cargo"];
 
-                    header("Location: " . BASE_DIR . "Home/home");
-                }else{
+                    header("Location: " . BASE_DIR . "Home/home");                
                     return;
                 }
             }
         }
         echo "
         <script>
-            document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+            document.getElementById('error').classList.remove('d-none');
             setTimeout(function() {
-                document.getElementById('error').innerHTML='';
+                document.getElementById('error').classList.add('d-none');
             }, 3000);
         </script>";
     }

@@ -12,7 +12,7 @@ class Pelicula extends Conexion
     private $director;
     private $elenco;
     private $fechaEstreno;
-    private $IdCalidad;
+    private $idCalidad;
     private $precioCompra;
     private $precioAlquiler;
     private $stock;
@@ -97,11 +97,11 @@ class Pelicula extends Conexion
     } 
 
     public function set_Id_Calidad($IdCalidad) {
-        $this->$IdCalidad = $IdCalidad;
+        $this->idCalidad = $IdCalidad;
     }
 
     public function get_Id_Calidad() {
-        return $this->IdCalidad;
+        return $this->idCalidad;
     }    
 
     public function setprecioCompra($precioCompra) {
@@ -152,6 +152,54 @@ class Pelicula extends Conexion
         $resultado = $list->fetchAll();
 
         return $resultado;
+    }
+
+    public function getCalidad()
+    {
+        $sql_leer = "SELECT * FROM calidad";
+        $list = $this->conn->prepare($sql_leer);
+        $list->execute();
+
+        $resultado = $list->fetchAll();
+
+        return $resultado;
+    }
+
+    public function getCategorias() {
+        $sql_leer = "SELECT * FROM categoria";
+        $list = $this->conn->prepare($sql_leer);
+        $list->execute();
+
+        $resultado = $list->fetchAll();
+
+        return $resultado;
+    }
+
+    public function getIdiomas() {
+        $idiomas = array("Español", "Ingles", "Frances", "Italiano", "Portugues");
+        return $idiomas;
+    }
+
+    public function save()
+    {
+
+        $sql = "INSERT INTO peliculas(nombre, descripcion, idCategoria, idioma, idCalidad, precioCompra, precioAlquiler, stock, imagen, disponibilidad)";
+        $sql .= "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $this->conn->prepare($sql);
+        $result = $stmt->execute(array($this->getNombre(), $this->getDescripcion(), $this->get_Id_Categoria(), $this->getIdioma(), $this->get_Id_Calidad(), $this->getprecioCompra(), $this->getprecioAlquiler(), $this->getStock(), $this->getImagen(), $this->getDisponibilidad()));
+
+        if ($result) {
+            header('location:' . BASE_DIR);
+        } else {
+            echo "            
+            <script>
+                document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+                setTimeout(function() {
+                    document.getElementById('error').innerHTML='';
+                }, 3000);
+            </script>;";
+        }
     }
 
 }

@@ -21,8 +21,8 @@
                     <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
                 </div>
                 <div class="row">
-                    <div class="card-group">
-                        <?php foreach ($pelis as $key) : ?>
+                    <?php foreach ($pelis as $key) : ?>
+                        <div class="col-md-6">
                             <div class="card mb-3 px-4">
                                 <div class="row no-gutters">
                                     <div class="col-md-6">
@@ -47,7 +47,7 @@
                                                 <span class="badge badge-danger">
                                                     <?= $key["calidad"] ?>
                                                 </span>
-                                            </p>                                            
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -66,16 +66,16 @@
                                     </div>
                                 </div>
                             </div>
-                        <?php endforeach ?>
-                    </div>
+                        </div>
+                    <?php endforeach ?>
                 </div>
             <?php endif ?>
         <?php endif ?>
 
         <?php if (!(isset($_SESSION["nombre"]) && isset($_SESSION["rol"]))) : ?>
             <div class="row">
-                <div class="card-group">
-                    <?php foreach ($pelis as $key) : ?>
+                <?php foreach ($pelis as $key) : ?>
+                    <div class="col-md-6">
                         <div class="card mb-3 px-4">
                             <div class="row no-gutters">
                                 <div class="col-md-6">
@@ -84,11 +84,10 @@
                                 <div class="col-md-6">
                                     <div class="card-body">
                                         <h5 class="card-title">
-                                            Titulo:
                                             <?= $key["nombre"] ?>
                                         </h5>
                                         <p class="card-text">
-                                            Descripcion:
+                                            <span class="font-italic">Descripcion:</span>
                                             <?= $key["descripcion"] ?>
                                         </p>
                                         <p class="card-text">
@@ -108,8 +107,8 @@
 
                             </div>
                         </div>
-                    <?php endforeach ?>
-                </div>
+                    </div>
+                <?php endforeach ?>
             </div>
         <?php endif ?>
     </div>

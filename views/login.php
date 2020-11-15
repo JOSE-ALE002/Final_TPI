@@ -3,7 +3,7 @@
         <div class="mx-auto col-md-6">
             <h1>Login Usuario</h1>
             <form action="<?= BASE_DIR ?>Home/login" method="POST">
-            <div class="form-group">
+                <div class="form-group">
                     <label for="">Email</label>
                     <input type="email" class="form-control" name="email" placeholder="Ingrese email" required>
                 </div>
@@ -16,7 +16,10 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
-                <p id="error"></p>
+                <!-- <p id="error"></p> -->
+                <div id="error" class="alert alert-danger d-none" role="alert">
+                    Error! usuario o contraseña incorrectos
+                </div>
             </form>
         </div>
     </div>
