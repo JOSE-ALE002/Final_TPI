@@ -4,6 +4,10 @@ class HomeController
 {
     public function home()
     {
+        require_once "models/Usuarios.php";
+        $pelicula = new Usuario();
+        $pelis = $pelicula->home();
+
         require_once "views/home.php";               
     }
 

@@ -25,7 +25,35 @@
         <?php endif ?>
         <?php }else{ ?>
             Este es el Incio "SIN" sesion, aqui iran las pelis babosos
-        <?php } ?>
+    <?php } ?>
+
+
+
+    <div class="container p-4">
+        <div class="row">
+            <?php foreach ($pelis as $key) : ?>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                                <h3 class="card-title text-upercase">
+                                    <?= $key["nombrePeli"] ?>
+                                </h3>
+                                <p class="m-2"><?= $key["descripcionPeli"] ?></p>
+                            <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) { ?>
+                                <?php if ($_SESSION["rol"] != "Usuario") : ?>
+                                    <a href="" class="btn btn-danger">Eliminar</a>
+                                    <a href="" class="btn btn-secondary">Editar</a>
+                                <?php endif ?>
+                                <?php if ($_SESSION["rol"] == "Usuario") : ?>
+                                    <a href="" class="btn btn-danger">Me gusta</a>
+                                <?php endif ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
 
 
 </main>
