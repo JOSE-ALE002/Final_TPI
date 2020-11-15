@@ -24,14 +24,14 @@ class Usuario extends Conexion
     {
         switch ($clave) {
             case 1: {
-                $this->pass = password_hash($pass, PASSWORD_DEFAULT);
-                break;
-            }
+                    $this->pass = password_hash($pass, PASSWORD_DEFAULT);
+                    break;
+                }
 
             case 2: {
-                $this->pass = $pass;
-                break;
-            }            
+                    $this->pass = $pass;
+                    break;
+                }
         }
     }
 

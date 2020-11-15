@@ -47,4 +47,9 @@ class HomeController
             return $user->signup();
         }
     }
+
+    public function about()
+    {
+        require_once "views/about.php";        
+    } 
 }
