@@ -16,8 +16,8 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
+                <p id="error"></p>
             </form>
-            <p id="error"></p>
         </div>
     </div>
 </main>

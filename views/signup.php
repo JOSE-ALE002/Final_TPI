@@ -1,24 +1,3 @@
-<?php 
-    if (!empty($_POST) && isset($_POST["email"])) {
-        require_once "controllers/HomeController.php";
-        $signup = new HomeController();
-        
-        if($signup->signup($_POST["nombre"], $_POST["apellido"], $_POST["direccion"], $_POST["email"], $_POST["contra"]))
-        {
-            if($signup->login($_POST["email"], $_POST["contra"])){
-                header("Location: " . BASE_DIR."Home/home");
-            }
-        }
-        else
-        {
-            $SignupErr = "<p>Error! Correo Registrado</p>";
-        }
-    }
-    else
-    {
-        $SignupErr = "";
-    }
-?>
 <main>
     <div class="row">
         <div class="mx-auto col-md-6">
@@ -52,7 +31,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
-                <?=$SignupErr?>
+                <p id="error"></p>
             </form>
         </div>
     </div>
