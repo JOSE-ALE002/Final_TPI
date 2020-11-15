@@ -149,8 +149,6 @@ class Usuario extends Conexion
 
     public function signup()
     {
-        $result = false;
-
         $query = "INSERT INTO usuarios (nombre, apellido, email, direccion, pass)";
         $query .= "VALUES('".$this->getNombre()."', '".$this->getApellido()."', '".$this->getEmail()."', '".$this->getDireccion()."','".$this->getPassword()."')";
 
@@ -163,10 +161,18 @@ class Usuario extends Conexion
             if ($nRow == 1) {
             }else{
                 if($stmt = $this->conn->query($query)){
-                    $result = true;
+                    require_once "controllers/HomeController.php";
+                    $signup = new HomeController();
+                    $signup->login($this->getEmail(), $this->getPassword());
                 }
             }
         }
-        return $result;
+        echo "
+        <script>
+            document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+            setTimeout(function() {
+                document.getElementById('error').innerHTML='';
+            }, 3000);
+        </script>";
     }
 }
