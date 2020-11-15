@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2020 a las 16:42:41
+-- Tiempo de generación: 15-11-2020 a las 07:23:35
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -46,6 +46,18 @@ CREATE TABLE `calidad` (
   `calidad` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `calidad`
+--
+
+INSERT INTO `calidad` (`idCalidad`, `calidad`) VALUES
+(1, '144p'),
+(2, '240p'),
+(3, '360p'),
+(4, '480p'),
+(5, '720p'),
+(6, '1080p');
+
 -- --------------------------------------------------------
 
 --
@@ -54,8 +66,27 @@ CREATE TABLE `calidad` (
 
 CREATE TABLE `categoria` (
   `idCategoria` int(11) NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+  `nombreCategoria` varchar(100) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idCategoria`, `nombreCategoria`) VALUES
+(1, 'Acción'),
+(2, 'Infantil'),
+(3, 'Comedia'),
+(4, 'Terror'),
+(5, 'Ciencia Ficción'),
+(6, 'Aventura'),
+(7, 'Suspenso'),
+(8, 'Romance'),
+(9, 'Fantasía'),
+(10, 'Drama'),
+(11, 'Animación'),
+(12, 'Crimen'),
+(13, 'Misterio');
 
 -- --------------------------------------------------------
 
@@ -93,6 +124,14 @@ CREATE TABLE `peliculas` (
   `imagen` text COLLATE utf8_spanish_ci NOT NULL,
   `disponibilidad` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `peliculas`
+--
+
+INSERT INTO `peliculas` (`idPelicula`, `nombre`, `descripcion`, `idCategoria`, `idioma`, `idiomaSubtitulos`, `director`, `elenco`, `fechaEstreno`, `idCalidad`, `precioCompra`, `precioAlquiler`, `stock`, `imagen`, `disponibilidad`) VALUES
+(1, 'Sonic: La película', 'Después de descubrir a un increíblemente veloz erizo azul, un oficial de policía de un pequeño pueblo debe ayudarlo a derrotar a un genio malvado que quiere capturarlo para experimentar con él. Basada en el videojuego.', 9, 'Español e Ingles', 'No disponible', 'Jeff Fowler', 'Ben Schwartz, James Marsden, Jim Carrey, Tika Sumpter, Natasha Rothwell, Adam Pally, Lee Majdoub, Neal McDonough, Tom Butler, Frank C. Turner, Melody Nosipho Niemann', '2020-11-01', 6, '9.99', '9.99', 300, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/sonic-the-hedgehog-4k.jpg', 1),
+(2, 'Bad Boys for live', 'Marcus y Mike deben confrontar cambios de carrera y crisis de edad media, cuando se unen a un equipo de élite recién creado del departamento de policía de Miami para capturar al implacable Armando Armas, líder de un cartel de drogas.\r\nTrilogía Bad Boys', 1, 'Español e Ingles', 'No disponible', 'Adil El Arbi, Bilall Fallah', 'Will Smith, Martin Lawrence, Vanessa Hudgens, Alexander Ludwig, Charles Melton, Paola Nuñez, Kate del Castillo, Nicky Jam, Joe Pantoliano, Jacob Scipio, Theresa Randle', '2020-11-20', 6, '9.99', '9.99', 250, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/bad-boys-for-life-4k.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -143,9 +182,11 @@ INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `email`, `direccion`,
 (7, 'Marlon', 'Coreas', 'Marlon@gmail.com', 'Estanzuela', 1, '$2y$10$xBKhiexUaCkU/z9OaQIC8e6Hy.aX6/Pzf.wbin4UZPwEIx5/JMk9a'),
 (8, 'Alfonso', 'Lemus', 'Lemus@gmail.com', 'Jucuapa', 1, '$2y$10$VdtssLPxsJ4c6OKgpnJhguTq184Lqt.PgjWU0BOOwtJOgAzGZxxXS'),
 (9, 'Carlos', 'Ivan', 'Ivan@gmail.com', 'San Miguel', 1, '$2y$10$LsEAqE/9eRijy61xKaKBC.cRijY7Ysep14sILWy7wCGJVQj/roA96'),
-(10, '', '', '', '', 2, '$2y$10$44Tuo2Ju7Nzk5jJVKC8bHeAOTjb.kSe0TNwCrkrN26Tfag8niE4T6'),
 (11, 'Jose', 'Cuevas', 'Jose@gmail.com', 'Presita', 2, '$2y$10$LiJ7IC.OIN7BnPGiTdTFweEzmhg3OJIuZR6XrFOAEv8KoJML/pMg6'),
-(12, 'Kenia', 'Calderon', 'Keny@gmail.com', 'Santa rosa', 2, '$2y$10$ACXNU/Iztx.uF8UsDT0cg.BCLiaFsk.Y0bjX4pXwkcR3CFjc9A9qC');
+(12, 'Kenia', 'Calderon', 'Keny@gmail.com', 'Santa rosa', 2, '$2y$10$ACXNU/Iztx.uF8UsDT0cg.BCLiaFsk.Y0bjX4pXwkcR3CFjc9A9qC'),
+(13, 'Kevin', 'Pineda', 'Pineda@gmail.com', 'Estados unidos', 2, '$2y$10$PNY0v9gpz6nINZseqYxvtOh1IMyRzqjl/jkd7ewdMkMB8nGNaARIa'),
+(14, 'Stanley', 'Sanchez', 'Stanley@gmail.com', 'Pacifica', 2, '$2y$10$x4BCOyUMjLfDOCNixhKzQ.Z7HJDYkuVXVk5CEy6wQykFh6zI/qM7S'),
+(15, 'Aldair', 'MArin', 'Aldair@gmail.com', 'Presita', 2, '$2y$10$KPsxcnTG7SprhZlkAHIdzeXbKRcYzm5.1o1YHk1ARfPSre8IPbWuq');
 
 -- --------------------------------------------------------
 
@@ -236,13 +277,13 @@ ALTER TABLE `alquileres`
 -- AUTO_INCREMENT de la tabla `calidad`
 --
 ALTER TABLE `calidad`
-  MODIFY `idCalidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=483;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -254,7 +295,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `idPelicula` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -266,7 +307,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `valoraciones`

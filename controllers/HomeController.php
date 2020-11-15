@@ -4,9 +4,9 @@ class HomeController
 {
     public function home()
     {
-        require_once "models/Usuarios.php";
-        $pelicula = new Usuario();
-        $pelis = $pelicula->home();
+        require_once "models/Pelicula.php";
+        $pelicula = new Pelicula();
+        $pelis = $pelicula->showMovies();
 
         require_once "views/home.php";               
     }
@@ -14,7 +14,7 @@ class HomeController
     public function login()
     {
         require_once "views/login.php";
-        require_once 'models/Usuarios.php';
+        require_once 'models/Usuario.php';
         if ($_POST && isset($_POST["email"]) && isset($_POST["contra"])) {
             $user = new Usuario();
             $user->setEmail($_POST["email"]);
@@ -26,7 +26,7 @@ class HomeController
 
     public function Salir()
     {
-        require_once 'models/Usuarios.php';
+        require_once 'models/Usuario.php';
         $user = new Usuario();
         $user->logout();
     }
@@ -34,7 +34,7 @@ class HomeController
     public function signup()
     {
         require_once "views/signup.php";
-        require_once "models/Usuarios.php";
+        require_once "models/Usuario.php";
 
         if ($_POST && isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["direccion"]) && isset($_POST["email"]) && isset($_POST["contra"])) {
             $user = new Usuario();

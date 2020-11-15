@@ -1,6 +1,7 @@
 <?php
+require_once 'database/Conexion.php';
 
-class Pelicula
+class Pelicula extends Conexion
 {
     private $idPelicula;   
     private $nombre;
@@ -17,6 +18,11 @@ class Pelicula
     private $stock;
     private $imagen;
     private $disponibilidad;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function set_Id_Pelicula($idPelicula) {
         $this->idPelicula = $idPelicula;
@@ -137,5 +143,15 @@ class Pelicula
     public function getDisponibilidad() {
         return $this->disponibilidad;
     } 
+
+    public function showMovies(){
+        $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria);";
+        $list = $this->conn->prepare($sql_leer);
+        $list->execute();
+
+        $resultado = $list->fetchAll();
+
+        return $resultado;
+    }
 
 }

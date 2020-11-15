@@ -78,17 +78,7 @@ class Usuario extends Conexion
     public function getAge()
     {
         return $this->age;
-    }
-
-    public function home(){
-        $sql_leer = 'SELECT * FROM pelis';
-        $list = $this->conn->prepare($sql_leer);
-        $list->execute();
-
-        $resultado = $list->fetchAll();
-
-        return $resultado;
-    }
+    }   
 
     public function login()
     {
