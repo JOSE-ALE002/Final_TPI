@@ -52,4 +52,17 @@ class HomeController
     {
         require_once "views/about.php";        
     } 
+
+    public function like()
+    {
+        require_once "models/Pelicula.php";
+        $p = new Pelicula();
+        
+        if ($_GET) {
+            $p->set_Id_Pelicula($_GET["id"]);
+            $like = $p->like($_GET["idUser"]);
+        }
+
+        require_once 'views/like.php';
+    }    
 }

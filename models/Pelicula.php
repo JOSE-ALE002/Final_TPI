@@ -281,4 +281,30 @@ class Pelicula extends Conexion
         </script>";
         }
     }
+
+    public function verifyLike($idPelicula, $idUsuario)
+    {
+        $sql = "SELECT * FROM valoraciones WHERE idPelicula = ? AND idUsuario = ?";
+        $stmt = $this->conn->prepare($sql);
+        if ($stmt->execute(array($idPelicula, $idUsuario))) {
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return $result;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function like($user)
+    {
+        $sql = "INSERT INTO valoraciones VALUES(NULL, ?, ?, 1, '2020-11-03')";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt->execute(array($user, $this->get_Id_Pelicula()))) {
+            header('location:' . BASE_DIR);
+        } else {
+            echo "Error";
+        }
+    }
 }
