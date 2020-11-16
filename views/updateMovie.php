@@ -106,15 +106,27 @@
             </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Guardar</button>
-        <p id="error"></p>
+        <div id="error" class="alert alert-danger d-none" role="alert">
+            Error! usuario o contraseña incorrectos
+        </div>
     </form>
 </div>
 
-<?php 
-// var_dump($peli);
-// if($_POST) {
-//     echo "<br><br>";
-//     var_dump($_POST);
-// }
-// echo $pelicula->get_Id_Pelicula();
+<?php
+if ($_POST) {
+    echo "Esto es post<br><br>";
+    // var_dump($_POST);
+
+    echo "ID de la pelicula" . $pelicula->get_Id_Pelicula() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->getNombre() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->getDescripcion() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->get_Id_Categoria() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->getIdioma() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->get_Id_Calidad() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->getprecioCompra() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->getprecioAlquiler() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->getStock() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->getImagen() . "<br><br>";
+    echo "ID de la pelicula" . $pelicula->getDisponibilidad() . "<br><br>";
+}
 ?>

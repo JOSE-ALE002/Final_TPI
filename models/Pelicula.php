@@ -264,22 +264,21 @@ class Pelicula extends Conexion
 
     public function update()
     {
-        $sql = "UPDATE peliculas SET nombre = ?, descripcion = ?, idCategoria = ?, idioma = ?, idCalidad = ?, precioCompra = ?, precioAlquiler = ?, stock = ?, imagen = ?, disponibilidad = ? WHERE ?";
+        $sql = "UPDATE peliculas SET nombre = ?, descripcion = ?, idCategoria = ?, idioma = ?, idCalidad = ?, precioCompra = ?, precioAlquiler = ?, stock = ?, imagen = ?, disponibilidad = ? WHERE idPelicula = ?";
 
         $stmt = $this->conn->prepare($sql);
         $result = $stmt->execute(array($this->getNombre(), $this->getDescripcion(), $this->get_Id_Categoria(), $this->getIdioma(), $this->get_Id_Calidad(), $this->getprecioCompra(), $this->getprecioAlquiler(), $this->getStock(), $this->getImagen(), $this->getDisponibilidad(), $this->get_Id_Pelicula()));
 
-        /* if ($result) {
+        if ($result) {
             header("Location: " . BASE_DIR);
         } else {
-            echo "Error";
-        } */
-        //     <script>
-        //         document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
-        //         setTimeout(function() {
-        //             document.getElementById('error').innerHTML='';
-        //         }, 3000);
-        //     </script>;";
-        // }
+            echo ";    
+            <script>
+                document.getElementById('error').classList.remove('d-none');
+                setTimeout(function() {
+                    document.getElementById('error').classList.add('d-none');
+            }, 3000);
+        </script>";
+        }
     }
 }

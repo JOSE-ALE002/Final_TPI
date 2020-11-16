@@ -39,11 +39,11 @@ class PeliculaController
         $categoria = $pelicula->getCategorias();
         $idiomas = $pelicula->getIdiomas();
         $disponibles = $pelicula->getDiponibilidades();
-        if ($_GET) {
-            $pelicula->set_Id_Pelicula($_GET["id"]);
-            $peli = $pelicula->Search();            
-                    
-        }else if($_POST) {
+        $pelicula->set_Id_Pelicula($_GET["id"]);
+        $peli = $pelicula->Search();
+        $pelicula->get_Id_Pelicula();
+        
+        if ($_POST) {
             $pelicula->setNombre($_POST["titulo"]);
             $pelicula->setDescripcion($_POST["descripcion"]);
             $pelicula->set_Id_Categoria($_POST["categoria"]);
@@ -57,7 +57,6 @@ class PeliculaController
             $pelicula->update();
         }
 
-        require_once "views/updateMovie.php";   
-        
+        require_once "views/updateMovie.php";
     }
 }
