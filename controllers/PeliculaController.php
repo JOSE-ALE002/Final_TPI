@@ -10,6 +10,7 @@ class PeliculaController
         $calidad = $pelicula->getCalidad();
         $categoria = $pelicula->getCategorias();
         $idiomas = $pelicula->getIdiomas();
+        $disponibles = $pelicula->getDiponibilidades();
 
 
         if ($_POST) {

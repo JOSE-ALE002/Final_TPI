@@ -65,7 +65,7 @@
                 <select name="disponibilidad" class="form-control">
                     <option>Selecccionar</option>
                     <?php foreach ($disponibles as $key) : ?>
-                        <option value="<?= $key["id"] ?>" selected>
+                        <option value="<?= $key["id"] ?>">
                             <?= $key["title"] ?>
                         </option>
                     <?php endforeach ?>
