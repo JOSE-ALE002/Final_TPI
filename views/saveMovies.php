@@ -3,7 +3,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="titulo">Titulo</label>
-                <input type="text" name="titulo" class="form-control" placeholder="Ingrese el titulo de la pelicula">
+                <input type="text" name="titulo" class="form-control" placeholder="Ingrese el titulo de la pelicula" required>
             </div>
             <div class="form-group col-md-3">
                 <label for="Categoria">Categoria</label>
@@ -28,8 +28,7 @@
         </div>
         <div class="form-group">
             <label for="descripcion">Descripcion</label>
-            <textarea name="descripcion" cols="30" rows="10" class="form-control" placeholder="Descripcion">
-
+            <textarea name="descripcion" cols="30" rows="10" class="form-control" placeholder="Descripcion" required>
             </textarea>
         </div>
         <div class="form-row">
@@ -45,21 +44,21 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="PrecioCompra">Precio de compra</label>
-                <input type="number" name="P_compra" id="" class="form-control" placeholder="Ingrese precio de compra">
+                <input type="number" name="P_compra" id="" class="form-control" placeholder="Ingrese precio de compra" required>
             </div>
             <div class="form-group col-md-3">
                 <label for="PrecioAlquiler">Precio de alquiler</label>
-                <input type="number" name="P_alquiler" id="" class="form-control" placeholder="Ingrese precio de alquiler">
+                <input type="number" name="P_alquiler" id="" class="form-control" placeholder="Ingrese precio de alquiler" required>
             </div>
             <div class="form-group col-md-2">
                 <label for="stock">Stock</label>
-                <input placeholder="Stock" type="number" name="stock" class="form-control">
+                <input placeholder="Stock" type="number" name="stock" class="form-control" required>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8">
                 <label for="imagen">Imagen</label>
-                <input type="text" placeholder="imagen" name="imagen" class="form-control">
+                <input type="text" placeholder="imagen" name="imagen" class="form-control" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="disponibilidad">Disponibilidad</label>
