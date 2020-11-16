@@ -8,9 +8,43 @@
                     <hr>
                     <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
                 </div>
-                <div>
-                    Este es el Inicio con sesion de "Administrador"
-                </div>
+                <table class="table table-striped text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Género</th>
+                            <th scope="col">Idioma</th>
+                            <th scope="col">Calidad</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($pelis as $key) : ?>
+                            <tr>
+                                <td><?= $key["idPelicula"] ?></td>
+                                <td><?= $key["nombre"] ?></td>
+                                <td><?= $key["descripcion"] ?></td>
+                                <td><?= $key["nombreCategoria"] ?></td>
+                                <td><?= $key["idioma"] ?></td>
+                                <td><?= $key["calidad"] ?></td>
+                                <td><?= $key["stock"] ?></td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="<?php echo BASE_DIR . "Pelicula/update&id=". $key["idPelicula"]?>" type="button" class="btn btn-primary">
+                                            Actualizar
+                                        </a>
+                                        <a href="<?= BASE_DIR ?>Pelicula/delete&id=<?= $key["id"] ?>" type="button" class="btn btn-danger">
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
             <?php endif ?>
 
             <?php if ($_SESSION["rol"] == "Usuario") : ?>

@@ -7,7 +7,7 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="Categoria">Categoria</label>
-                <select name="categoria" class="form-control">
+                <select name="categoria" aria-selected="Terror" class="form-control">
                     <?php foreach ($categoria as $key) : ?>
                         <option value="<?= $key["idCategoria"] ?>">
                             <?= $key["nombreCategoria"] ?>
@@ -64,8 +64,11 @@
                 <label for="disponibilidad">Disponibilidad</label>
                 <select name="disponibilidad" class="form-control">
                     <option>Selecccionar</option>
-                    <option>Disponible</option>
-                    <option>No Disponible</option>
+                    <?php foreach ($disponibles as $key) : ?>
+                        <option value="<?= $key["id"] ?>" selected>
+                            <?= $key["title"] ?>
+                        </option>
+                    <?php endforeach ?>
                 </select>
             </div>
         </div>
@@ -73,7 +76,3 @@
         <p id="error"></p>
     </form>
 </div>
-
-<?php if ($_POST) {
-    var_dump($_POST);
-} ?>

@@ -3,7 +3,7 @@ require_once 'database/Conexion.php';
 
 class Pelicula extends Conexion
 {
-    private $idPelicula;   
+    private $idPelicula;
     private $nombre;
     private $descripcion;
     private $idCategoria;
@@ -24,132 +24,163 @@ class Pelicula extends Conexion
         parent::__construct();
     }
 
-    public function set_Id_Pelicula($idPelicula) {
+    public function set_Id_Pelicula($idPelicula)
+    {
         $this->idPelicula = $idPelicula;
     }
 
-    public function get_Id_Pelicula() {
+    public function get_Id_Pelicula()
+    {
         return $this->idPelicula;
-    }    
+    }
 
-    public function setNombre($nombre) {
+    public function setNombre($nombre)
+    {
         $this->nombre = $nombre;
     }
 
-    public function getNombre() {
+    public function getNombre()
+    {
         return $this->nombre;
-    }    
+    }
 
-    public function setDescripcion($descripcion) {
+    public function setDescripcion($descripcion)
+    {
         $this->descripcion = $descripcion;
     }
 
-    public function getDescripcion() {
+    public function getDescripcion()
+    {
         return $this->descripcion;
-    }    
+    }
 
-    public function set_Id_Categoria($idCategoria) {
+    public function set_Id_Categoria($idCategoria)
+    {
         $this->idCategoria = $idCategoria;
     }
 
-    public function get_Id_Categoria() {
+    public function get_Id_Categoria()
+    {
         return $this->idCategoria;
     }
 
-    public function setIdioma($idioma) {
+    public function setIdioma($idioma)
+    {
         $this->idioma = $idioma;
     }
 
-    public function getIdioma() {
+    public function getIdioma()
+    {
         return $this->idioma;
-    } 
+    }
 
-    public function setSubtitulos($subtitulos) {
+    public function setSubtitulos($subtitulos)
+    {
         $this->subtitulos = $subtitulos;
     }
 
-    public function getSubtitulos() {
+    public function getSubtitulos()
+    {
         return $this->subtitulos;
-    } 
+    }
 
-    public function setDirector($director) {
+    public function setDirector($director)
+    {
         $this->director = $director;
     }
 
-    public function getDirector() {
+    public function getDirector()
+    {
         return $this->director;
-    } 
+    }
 
-    public function setElenco($elenco) {
+    public function setElenco($elenco)
+    {
         $this->elenco = $elenco;
     }
 
-    public function getElenco() {
+    public function getElenco()
+    {
         return $this->elenco;
-    } 
+    }
 
-    public function setfechaEstreno($fechaEstreno) {
+    public function setfechaEstreno($fechaEstreno)
+    {
         $this->fechaEstreno = $fechaEstreno;
     }
 
-    public function getfechaEstreno() {
+    public function getfechaEstreno()
+    {
         return $this->fechaEstreno;
-    } 
+    }
 
-    public function set_Id_Calidad($IdCalidad) {
+    public function set_Id_Calidad($IdCalidad)
+    {
         $this->idCalidad = $IdCalidad;
     }
 
-    public function get_Id_Calidad() {
+    public function get_Id_Calidad()
+    {
         return $this->idCalidad;
-    }    
+    }
 
-    public function setprecioCompra($precioCompra) {
+    public function setprecioCompra($precioCompra)
+    {
         $this->precioCompra = $precioCompra;
     }
 
-    public function getprecioCompra() {
+    public function getprecioCompra()
+    {
         return $this->precioCompra;
-    } 
+    }
 
-    public function setprecioAlquiler($precioAlquiler) {
+    public function setprecioAlquiler($precioAlquiler)
+    {
         $this->precioAlquiler = $precioAlquiler;
     }
 
-    public function getprecioAlquiler() {
+    public function getprecioAlquiler()
+    {
         return $this->precioAlquiler;
-    } 
+    }
 
-    public function setStock($Stock) {
+    public function setStock($Stock)
+    {
         $this->stock = $Stock;
     }
 
-    public function getStock() {
+    public function getStock()
+    {
         return $this->stock;
-    } 
+    }
 
-    public function setImagen($imagen) {
+    public function setImagen($imagen)
+    {
         $this->imagen = $imagen;
     }
 
-    public function getImagen() {
+    public function getImagen()
+    {
         return $this->imagen;
-    } 
+    }
 
-    public function setDisponibilidad($disponibilidad) {
+    public function setDisponibilidad($disponibilidad)
+    {
         $this->disponibilidad = $disponibilidad;
     }
 
-    public function getDisponibilidad() {
+    public function getDisponibilidad()
+    {
         return $this->disponibilidad;
-    } 
+    }
 
-    public function showMovies(){
+    public function showMovies()
+    {
         $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria);";
         $list = $this->conn->prepare($sql_leer);
         $list->execute();
 
-        $resultado = $list->fetchAll();
+        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultado;
     }
@@ -160,24 +191,41 @@ class Pelicula extends Conexion
         $list = $this->conn->prepare($sql_leer);
         $list->execute();
 
-        $resultado = $list->fetchAll();
+        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultado;
     }
 
-    public function getCategorias() {
+    public function getCategorias()
+    {
         $sql_leer = "SELECT * FROM categoria";
         $list = $this->conn->prepare($sql_leer);
         $list->execute();
 
-        $resultado = $list->fetchAll();
+        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultado;
     }
 
-    public function getIdiomas() {
+    public function getIdiomas()
+    {
         $idiomas = array("Español", "Ingles", "Frances", "Italiano", "Portugues");
         return $idiomas;
+    }
+
+    public function getDiponibilidades()
+    {
+        $disponibilidades = [
+            array(
+                "id" => 1,
+                "title" => "Disponible"
+            ),
+            array(
+                "id" => 0,
+                "title" => "No disponible"
+            )
+        ];
+        return $disponibilidades;
     }
 
     public function save()
@@ -202,4 +250,36 @@ class Pelicula extends Conexion
         }
     }
 
+    public function Search()
+    {
+        $sql = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE idPelicula = ?";
+        $stmt = $this->conn->prepare($sql);
+        $result = $stmt->execute(array($this->get_Id_Pelicula()));
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        return $result;
+    }
+
+    public function update()
+    {
+        $sql = "UPDATE peliculas SET nombre = ?, descripcion = ?, idCategoria = ?, idioma = ?, idCalidad = ?, precioCompra = ?, precioAlquiler = ?, stock = ?, imagen = ?, disponibilidad = ? WHERE ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $result = $stmt->execute(array($this->getNombre(), $this->getDescripcion(), $this->get_Id_Categoria(), $this->getIdioma(), $this->get_Id_Calidad(), $this->getprecioCompra(), $this->getprecioAlquiler(), $this->getStock(), $this->getImagen(), $this->getDisponibilidad(), $this->get_Id_Pelicula()));
+
+        /* if ($result) {
+            header("Location: " . BASE_DIR);
+        } else {
+            echo "Error";
+        } */
+        //     <script>
+        //         document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+        //         setTimeout(function() {
+        //             document.getElementById('error').innerHTML='';
+        //         }, 3000);
+        //     </script>;";
+        // }
+    }
 }
