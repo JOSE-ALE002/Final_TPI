@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2020 a las 00:31:52
+-- Tiempo de generación: 16-11-2020 a las 21:39:44
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -126,10 +126,11 @@ CREATE TABLE `peliculas` (
 --
 
 INSERT INTO `peliculas` (`idPelicula`, `nombre`, `descripcion`, `idCategoria`, `idioma`, `idCalidad`, `precioCompra`, `precioAlquiler`, `stock`, `imagen`, `disponibilidad`) VALUES
-(1, 'Sonic: La película', 'Después de descubrir a un increíblemente veloz erizo azul, un oficial de policía de un pequeño pueblo debe ayudarlo a derrotar a un genio malvado que quiere capturarlo para experimentar con él. Basada en el videojuego.', 9, 'Español e Ingles', 6, '9.99', '9.99', 300, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/sonic-the-hedgehog-4k.jpg', 1),
-(2, 'Bad Boys for live', 'Marcus y Mike deben confrontar cambios de carrera y crisis de edad media, cuando se unen a un equipo de élite recién creado del departamento de policía de Miami para capturar al implacable Armando Armas, líder de un cartel de drogas.\r\nTrilogía Bad Boys', 1, 'Español e Ingles', 6, '9.99', '9.99', 250, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/bad-boys-for-life-4k.jpg', 1),
-(3, 'Star Wars: El ascenso de Skywalker', 'Los miembros sobrevivientes de la resistencia se enfrentan a la Primera Orden una vez más, y el legendario conflicto entre los Jedi y los Sith alcanza su punto máximo llevando la saga Skywalker a su fin.\r\nSaga Star Wars', 5, 'Español', 5, '9.99', '9.99', 125, 'https://www.cinecalidad.is/wp-content/uploads/2020/03/star-wars-the-rise-of-skywalker-4k.jpg', 0),
-(4, 'Avengers: Endgame', 'Después de la devastadora lucha contra Thanos, el universo queda en ruinas. Con la ayuda de los aliados restantes, los Vengadores se juntan una vez más para intentar revertir las acciones de Thanos y restaurar el balance al universo.\r\nUniverso Marvel', 9, 'Ingles', 6, '9.99', '9.99', 200, 'https://www.cinecalidad.is/wp-content/uploads/2019/07/avengers-endgame-4k.jpg', 0);
+(1, 'Sonic: La pelicula', 'Después de descubrir a un increíblemente veloz erizo azul, un oficial de policía de un pequeño pueblo debe ayudarlo a derrotar a un genio malvado que quiere capturarlo para experimentar con él. Basada en el videojuego.                                   ', 9, 'Español', 5, '9.99', '9.99', 250, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/sonic-the-hedgehog-4k.jpg', 1),
+(2, 'Dolittle', '                                                El doctor John Dolittle, que puede hablar con los animales, decide esconderse del mundo. Pero pronto debe embarcarse en una aventura para encontrar una isla legendaria con un joven aprendiz y un equipo de extrañas mascotas.                                    ', 6, 'Italiano', 2, '9.99', '9.99', 120, 'https://www.cinecalidad.is/wp-content/uploads/2020/03/dolittle-4k.jpg', 1),
+(3, 'Bad Boys for live', '                                Marcus y Mike deben confrontar cambios de carrera y crisis de edad media, cuando se unen a un equipo de élite recién creado del departamento de policía de Miami para capturar al implacable Armando Armas, líder de un cartel de drogas.\r\nTrilogía Bad Boys                                                                ', 1, 'Ingles', 4, '9.99', '9.99', 150, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/bad-boys-for-life-4k.jpg', 1),
+(4, 'Avengers: Endgame', '                Después de la devastadora lucha contra Thanos, el universo queda en ruinas. Con la ayuda de los aliados restantes, los Vengadores se juntan una vez más para intentar revertir las acciones de Thanos y restaurar el balance al universo.\r\nUniverso Marvel                                   ', 5, 'Ingles', 6, '9.99', '9.99', 500, 'https://www.cinecalidad.is/wp-content/uploads/2019/07/avengers-endgame-4k.jpg', 1),
+(5, 'Star Wars: El ascenso de Skywalker', 'Los miembros sobrevivientes de la resistencia se enfrentan a la Primera Orden una vez más, y el legendario conflicto entre los Jedi y los Sith alcanza su punto máximo llevando la saga Skywalker a su fin.\r\nSaga Star Wars                    ', 5, 'Frances', 5, '9.99', '9.99', 300, 'https://www.cinecalidad.is/wp-content/uploads/2020/03/star-wars-the-rise-of-skywalker-4k.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -293,7 +294,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `idPelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
