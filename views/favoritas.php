@@ -22,12 +22,12 @@
                                             </p>
                                             <p class="card-text">
                                                 Categoria:
-                                                <small class="text-muted"> <?= $key["idCategoria"] ?> </small>
+                                                <small class="text-muted"> <?= $key["nombreCategoria"] ?> </small>
                                             </p>
                                             <p class="card-text">
                                                 Calidad:
                                                 <span class="badge badge-danger">
-                                                    <?= $key["idCalidad"] ?>
+                                                    <?= $key["calidad"] ?>
                                                 </span>
                                             </p>
                                         </div>

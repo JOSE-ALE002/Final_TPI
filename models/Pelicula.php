@@ -322,12 +322,21 @@ class Pelicula extends Conexion
 
     public function Favoritos($user)
     {
+        $fav = [];
         $sql_leer = "SELECT * FROM valoraciones INNER JOIN peliculas ON valoraciones.idPelicula = peliculas.idPelicula WHERE idUsuario = ?";
         $list = $this->conn->prepare($sql_leer);
         $list->execute(array($user));
 
         $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
 
-        return $resultado;
-    }    
+        foreach ($resultado as $key) {
+            $sql = $sql = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE idPelicula = ?";
+            
+            $list = $this->conn->prepare($sql);
+            $list->execute(array($key["idPelicula"]));
+            $fav[] = $list->fetch(PDO::FETCH_ASSOC);
+        }
+
+        return $fav;
+    }
 }
