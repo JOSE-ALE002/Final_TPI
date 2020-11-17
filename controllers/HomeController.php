@@ -87,7 +87,7 @@ class HomeController
         if($_GET) {
             $pelis = $pelicula->Favoritos($_GET["idUser"]);
             require_once 'views/favoritas.php';
-            var_dump($pelis);
+            // var_dump($pelis);
         }
         
     }
