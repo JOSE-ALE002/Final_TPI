@@ -307,4 +307,27 @@ class Pelicula extends Conexion
             echo "Error";
         }
     }
+
+    public function dislike($idPelicula, $idUsuario)
+    {
+        $sql = "DELETE FROM `valoraciones` WHERE idPelicula = ? AND idUsuario = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt->execute(array($idPelicula, $idUsuario))) {
+            header('location:' . BASE_DIR);
+        } else {
+            echo "Error";
+        }
+    }
+
+    public function Favoritos($user)
+    {
+        $sql_leer = "SELECT * FROM valoraciones INNER JOIN peliculas ON valoraciones.idPelicula = peliculas.idPelicula WHERE idUsuario = ?";
+        $list = $this->conn->prepare($sql_leer);
+        $list->execute(array($user));
+
+        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultado;
+    }    
 }

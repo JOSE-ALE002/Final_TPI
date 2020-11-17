@@ -62,19 +62,21 @@
                                     <div class="col-md-6">
                                         <img src="<?= $key["imagen"] ?>" class="card-img" alt="...">
                                         <div class="container d-flex justify-content-center">
-                                            <a href="<?php echo BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="btn btn-danger btn-sm my-3">
-                                                <?php
-                                                require_once "models/Pelicula.php";
-                                                $p = new Pelicula();
-                                                
-                                                if($p->verifyLike($key["idPelicula"], $_SESSION["id"])) {                                                    
-                                                        echo "Ya no me gusta"                                                 ;   
-                                                                                                     
-                                                } else {
-                                                    echo "ME gusta";
-                                                }                        
-                                                ?>
-                                            </a>
+
+                                            <?php
+                                            require_once "models/Pelicula.php";
+                                            $p = new Pelicula();
+
+                                            if ($p->verifyLike($key["idPelicula"], $_SESSION["id"])) { ?>
+                                                <a href="<?php echo BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="btn btn-danger btn-sm my-3">
+                                                    Ya no me gusta
+                                                </a>
+                                            <?php
+                                            } else { ?>
+                                                <a href="<?php echo BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="btn btn-danger btn-sm my-3">
+                                                    Me gusta
+                                                </a>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

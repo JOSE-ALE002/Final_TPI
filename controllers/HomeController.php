@@ -64,5 +64,33 @@ class HomeController
         }
 
         require_once 'views/like.php';
-    }    
+    }   
+
+    public function dislike()
+    {
+        require_once "models/Pelicula.php";
+        $p = new Pelicula();
+        
+        if ($_GET) {            
+            $dislike = $p->dislike($_GET["id"], $_GET["idUser"]);
+        }
+
+        require_once 'views/like.php';
+    }   
+
+    public function favoritos()
+    {
+        require_once 'models/Pelicula.php';
+        
+        $pelicula = new Pelicula();
+        
+        if($_GET) {
+            $pelis = $pelicula->Favoritos($_GET["idUser"]);
+            require_once 'views/favoritas.php';
+            var_dump($pelis);
+        }
+        
+    }
+    
+     
 }

@@ -1,3 +1,3 @@
 <div class="container">
-    <?php var_dump($like);?>
+    <?php var_dump($_GET);?>
 </div>

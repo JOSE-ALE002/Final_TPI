@@ -18,6 +18,7 @@
       <h1 class="w-50 d-inline-block"><i class="fas fa-dove fa-lg fa-fw"></i>CinePalomadasHD</h1>
       <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) { ?>
         <a class="float-right" href="<?= BASE_DIR . "Home/Salir" ?>">Salir</a>
+        <a class="float-right" href="<?= BASE_DIR . "Home/favoritos&idUser=" . $_SESSION["id"]?>">Peliculas Favoritas</a>
         <?php if ($_SESSION["rol"] != "Usuario") : ?>
           <a class="float-right" href="<?= BASE_DIR . "Pelicula/save" ?>">Agregar Pelicula</a>
         <?php endif ?>
