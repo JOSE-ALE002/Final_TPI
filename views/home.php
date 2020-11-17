@@ -33,7 +33,7 @@
                                 <td><?= $key["stock"] ?></td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="<?php echo BASE_DIR . "Pelicula/update&id=". $key["idPelicula"]?>" type="button" class="btn btn-primary">
+                                        <a href="<?php echo BASE_DIR . "Pelicula/update&id=" . $key["idPelicula"] ?>" type="button" class="btn btn-primary">
                                             Actualizar
                                         </a>
                                         <a href="<?= BASE_DIR ?>Pelicula/delete&id=<?= $key["id"] ?>" type="button" class="btn btn-danger">
@@ -61,6 +61,23 @@
                                 <div class="row no-gutters">
                                     <div class="col-md-6">
                                         <img src="<?= $key["imagen"] ?>" class="card-img" alt="...">
+                                        <div class="container d-flex justify-content-center">
+
+                                            <?php
+                                            require_once "models/Pelicula.php";
+                                            $p = new Pelicula();
+
+                                            if ($p->verifyLike($key["idPelicula"], $_SESSION["id"])) { ?>
+                                                <a href="<?php echo BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="btn btn-danger btn-sm my-3">
+                                                    Ya no me gusta
+                                                </a>
+                                            <?php
+                                            } else { ?>
+                                                <a href="<?php echo BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="btn btn-danger btn-sm my-3">
+                                                    Me gusta
+                                                </a>
+                                            <?php } ?>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="card-body">

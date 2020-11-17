@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2020 a las 21:39:44
+-- Tiempo de generación: 17-11-2020 a las 02:10:43
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -197,9 +197,19 @@ CREATE TABLE `valoraciones` (
   `idValoracion` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `idPelicula` int(11) NOT NULL,
-  `valoracion` int(11) NOT NULL,
+  `valoracion` tinyint(1) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `valoraciones`
+--
+
+INSERT INTO `valoraciones` (`idValoracion`, `idUsuario`, `idPelicula`, `valoracion`, `fecha`) VALUES
+(24, 14, 1, 1, '2020-11-03'),
+(26, 14, 4, 1, '2020-11-03'),
+(27, 14, 2, 1, '2020-11-03'),
+(28, 2, 1, 1, '2020-11-03');
 
 --
 -- Índices para tablas volcadas
@@ -312,7 +322,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `valoraciones`
 --
 ALTER TABLE `valoraciones`
-  MODIFY `idValoracion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idValoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas

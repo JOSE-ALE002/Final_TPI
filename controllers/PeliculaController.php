@@ -59,4 +59,6 @@ class PeliculaController
 
         require_once "views/updateMovie.php";
     }
+
+    
 }

@@ -21,6 +21,7 @@
       <h2 class="titulo_css">Nuevo</h2>
       <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) { ?>
         <a class="float-right" href="<?= BASE_DIR . "Home/Salir" ?>">Salir</a>
+        <a class="float-right" href="<?= BASE_DIR . "Home/favoritos&idUser=" . $_SESSION["id"]?>">Peliculas Favoritas</a>
         <?php if ($_SESSION["rol"] != "Usuario") : ?>
           <a class="float-right" href="<?= BASE_DIR . "Pelicula/save" ?>">Agregar Pelicula</a>
         <?php endif ?>
