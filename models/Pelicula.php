@@ -172,18 +172,7 @@ class Pelicula extends Conexion
     public function getDisponibilidad()
     {
         return $this->disponibilidad;
-    }
-
-    public function showMovies()
-    {
-        $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria);";
-        $list = $this->conn->prepare($sql_leer);
-        $list->execute();
-
-        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
-
-        return $resultado;
-    }
+    }   
 
     public function getCalidad()
     {
@@ -226,6 +215,19 @@ class Pelicula extends Conexion
             )
         ];
         return $disponibilidades;
+    }
+
+    // FUNCIONES DEL CRUD
+
+    public function showMovies()
+    {
+        $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria);";
+        $list = $this->conn->prepare($sql_leer);
+        $list->execute();
+
+        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultado;
     }
 
     public function save()
@@ -280,6 +282,17 @@ class Pelicula extends Conexion
             }, 3000);
         </script>";
         }
+    }
+
+
+    public function delete()
+    {
+        $sql = "DELETE FROM Peliculas WHERE idPelicula = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if($stmt->execute(array($this->get_Id_Pelicula()))) {
+            header("Location: " . BASE_DIR);
+        }        
     }
 
     public function verifyLike($idPelicula, $idUsuario)

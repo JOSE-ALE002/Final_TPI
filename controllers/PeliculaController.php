@@ -42,7 +42,7 @@ class PeliculaController
         $pelicula->set_Id_Pelicula($_GET["id"]);
         $peli = $pelicula->Search();
         $pelicula->get_Id_Pelicula();
-        
+
         if ($_POST) {
             $pelicula->setNombre($_POST["titulo"]);
             $pelicula->setDescripcion($_POST["descripcion"]);
@@ -60,5 +60,13 @@ class PeliculaController
         require_once "views/updateMovie.php";
     }
 
-    
+    public function delete()
+    {
+        require_once 'models/Pelicula.php';
+        $pelicula = new Pelicula();
+        if ($_GET) {
+            $pelicula->set_Id_Pelicula($_GET["id"]);
+            $pelicula->delete();
+        }
+    }
 }

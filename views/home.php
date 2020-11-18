@@ -36,7 +36,7 @@
                                         <a href="<?php echo BASE_DIR . "Pelicula/update&id=" . $key["idPelicula"] ?>" type="button" class="btn btn-primary">
                                             Actualizar
                                         </a>
-                                        <a href="<?= BASE_DIR ?>Pelicula/delete&id=<?= $key["id"] ?>" type="button" class="btn btn-danger">
+                                        <a href="<?= BASE_DIR ?>Pelicula/delete&id=<?= $key["idPelicula"] ?>" type="button" class="btn btn-danger">
                                             Eliminar
                                         </a>
                                     </div>
