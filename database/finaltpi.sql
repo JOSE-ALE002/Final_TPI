@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2020 a las 02:10:43
+-- Tiempo de generación: 19-11-2020 a las 05:48:24
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -126,11 +126,16 @@ CREATE TABLE `peliculas` (
 --
 
 INSERT INTO `peliculas` (`idPelicula`, `nombre`, `descripcion`, `idCategoria`, `idioma`, `idCalidad`, `precioCompra`, `precioAlquiler`, `stock`, `imagen`, `disponibilidad`) VALUES
-(1, 'Sonic: La pelicula', 'Después de descubrir a un increíblemente veloz erizo azul, un oficial de policía de un pequeño pueblo debe ayudarlo a derrotar a un genio malvado que quiere capturarlo para experimentar con él. Basada en el videojuego.                                   ', 9, 'Español', 5, '9.99', '9.99', 250, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/sonic-the-hedgehog-4k.jpg', 1),
-(2, 'Dolittle', '                                                El doctor John Dolittle, que puede hablar con los animales, decide esconderse del mundo. Pero pronto debe embarcarse en una aventura para encontrar una isla legendaria con un joven aprendiz y un equipo de extrañas mascotas.                                    ', 6, 'Italiano', 2, '9.99', '9.99', 120, 'https://www.cinecalidad.is/wp-content/uploads/2020/03/dolittle-4k.jpg', 1),
-(3, 'Bad Boys for live', '                                Marcus y Mike deben confrontar cambios de carrera y crisis de edad media, cuando se unen a un equipo de élite recién creado del departamento de policía de Miami para capturar al implacable Armando Armas, líder de un cartel de drogas.\r\nTrilogía Bad Boys                                                                ', 1, 'Ingles', 4, '9.99', '9.99', 150, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/bad-boys-for-life-4k.jpg', 1),
+(1, 'Sonic: La pelicula', '                                                                                Después de descubrir a un increíblemente veloz erizo azul, un oficial de policía de un pequeño pueblo debe ayudarlo a derrotar a un genio malvado que quiere capturarlo para experimentar con él. Basada en el videojuego.                                                                                               ', 9, 'Español', 5, '9.99', '9.99', 250, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/sonic-the-hedgehog-4k.jpg', 1),
+(2, 'Bob Esponja: Al rescate', 'Antes de los eventos de la serie de televisión, Bob Esponja sale en un viaje al Kamp Koral y hace nuevos amigos. Sin embargo, cuando su caracol mascota Gary es secuestrado por Poseidón y llevado a la Ciudad Perdida de Atlantic City.', 2, 'Español', 6, '9.99', '9.99', 50, 'https://www.cinecalidad.is/wp-content/uploads/2020/11/bob-esponja-al-rescate.jpg', 1),
+(3, 'Bad Boys for live', '                                                                Marcus y Mike deben confrontar cambios de carrera y crisis de edad media, cuando se unen a un equipo de élite recién creado del departamento de policía de Miami para capturar al implacable Armando Armas, líder de un cartel de drogas.\r\nTrilogía Bad Boys                                                                                        ', 1, 'Ingles', 4, '9.99', '9.99', 150, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/bad-boys-for-life-4k.jpg', 1),
 (4, 'Avengers: Endgame', '                Después de la devastadora lucha contra Thanos, el universo queda en ruinas. Con la ayuda de los aliados restantes, los Vengadores se juntan una vez más para intentar revertir las acciones de Thanos y restaurar el balance al universo.\r\nUniverso Marvel                                   ', 5, 'Ingles', 6, '9.99', '9.99', 500, 'https://www.cinecalidad.is/wp-content/uploads/2019/07/avengers-endgame-4k.jpg', 1),
-(5, 'Star Wars: El ascenso de Skywalker', 'Los miembros sobrevivientes de la resistencia se enfrentan a la Primera Orden una vez más, y el legendario conflicto entre los Jedi y los Sith alcanza su punto máximo llevando la saga Skywalker a su fin.\r\nSaga Star Wars                    ', 5, 'Frances', 5, '9.99', '9.99', 300, 'https://www.cinecalidad.is/wp-content/uploads/2020/03/star-wars-the-rise-of-skywalker-4k.jpg', 1);
+(5, 'Star Wars: El ascenso de Skywalker', 'Los miembros sobrevivientes de la resistencia se enfrentan a la Primera Orden una vez más, y el legendario conflicto entre los Jedi y los Sith alcanza su punto máximo llevando la saga Skywalker a su fin.\r\nSaga Star Wars                    ', 5, 'Frances', 5, '9.99', '9.99', 300, 'https://www.cinecalidad.is/wp-content/uploads/2020/03/star-wars-the-rise-of-skywalker-4k.jpg', 1),
+(6, 'Amor de calendario', 'Cansados de estar solteros durante las festividades, dos desconocidos llegan a un acuerdo de ser sus acompañantes platónicos durante todo un año, solo para llegar a sentir sentimientos reales en el proceso.', 8, 'Español', 5, '9.99', '9.99', 50, 'https://www.cinecalidad.is/wp-content/uploads/2020/11/holidate.jpg', 1),
+(7, 'Joker', 'En Ciudad Gótica, Arthur Fleck es un comediante con problemas mentales que es maltratado por la sociedad. Entonces cae en una espiral descendiente de revolución y crimen que lo lleva cara a cara con su alter ego: el Guasón.', 10, 'Frances', 5, '9.99', '9.99', 120, 'https://www.cinecalidad.is/wp-content/uploads/2019/12/joker-4k.jpg', 1),
+(8, 'Más allá de la Luna ', 'Fei Fei, una niña determinada y muy inteligente, construye un cohete espacial con la esperanza de demostrar la existencia de la mítica diosa de la Luna. Una vez ahí, la pequeña vivirá una emocionante aventura y encontrará un inreíble mundo de criaturas fantásticas.\r\n\r\n ', 11, 'Español', 5, '9.99', '9.99', 50, 'https://www.cinecalidad.is/wp-content/uploads/2020/11/mas-alla-de-la-luna.jpg', 1),
+(9, 'Fuga de Pretoria', 'Dos sudafricanos blancos, confabulados con otros prisioneros, idean un plan para escaparse de la Prisión Central de Pretoria en 1979 luego de ser encerrados bajo distintos cargos de producir y compartir panfletos a favor de organizaciones prohibidas, durante la era del apartheid en Sudáfrica. Basada en eventos reales.', 1, 'Ingles', 6, '9.99', '9.99', 150, 'https://www.cinecalidad.is/wp-content/uploads/2020/11/escape-from-pretoria.jpg', 1),
+(10, 'El hombre invisible', 'Cuando el ex de Cecilia se quita la vida y le deja su fortuna, ella sospecha que su muerte fue un engaño. Conforme una serie de coincidencias se vuelven letales, Cecilia hace todo lo posible para probar que está siendo acechada por alguien que nadie puede ver.', 4, 'Español', 6, '9.99', '9.99', 50, 'https://www.cinecalidad.is/wp-content/uploads/2020/04/the-invisible-man-4k.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -206,10 +211,12 @@ CREATE TABLE `valoraciones` (
 --
 
 INSERT INTO `valoraciones` (`idValoracion`, `idUsuario`, `idPelicula`, `valoracion`, `fecha`) VALUES
-(24, 14, 1, 1, '2020-11-03'),
-(26, 14, 4, 1, '2020-11-03'),
-(27, 14, 2, 1, '2020-11-03'),
-(28, 2, 1, 1, '2020-11-03');
+(28, 2, 1, 1, '2020-11-03'),
+(30, 2, 5, 1, '2020-11-03'),
+(31, 14, 5, 1, '2020-11-03'),
+(36, 14, 1, 1, '2020-11-03'),
+(37, 14, 3, 1, '2020-11-03'),
+(40, 2, 7, 1, '2020-11-03');
 
 --
 -- Índices para tablas volcadas
@@ -304,7 +311,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `idPelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idPelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -322,7 +329,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `valoraciones`
 --
 ALTER TABLE `valoraciones`
-  MODIFY `idValoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idValoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restricciones para tablas volcadas
