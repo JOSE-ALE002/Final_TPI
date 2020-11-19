@@ -172,7 +172,7 @@ class Pelicula extends Conexion
     public function getDisponibilidad()
     {
         return $this->disponibilidad;
-    }   
+    }
 
     public function getCalidad()
     {
@@ -290,9 +290,9 @@ class Pelicula extends Conexion
         $sql = "DELETE FROM Peliculas WHERE idPelicula = ?";
         $stmt = $this->conn->prepare($sql);
 
-        if($stmt->execute(array($this->get_Id_Pelicula()))) {
+        if ($stmt->execute(array($this->get_Id_Pelicula()))) {
             header("Location: " . BASE_DIR);
-        }        
+        }
     }
 
     public function verifyLike($idPelicula, $idUsuario)
@@ -344,12 +344,35 @@ class Pelicula extends Conexion
 
         foreach ($resultado as $key) {
             $sql = $sql = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE idPelicula = ?";
-            
+
             $list = $this->conn->prepare($sql);
             $list->execute(array($key["idPelicula"]));
             $fav[] = $list->fetch(PDO::FETCH_ASSOC);
         }
 
         return $fav;
+    }
+
+    public function ordenamiento()
+    {
+        $original = $this->showMovies();
+        $arr = [];
+
+        foreach ($original as $key) {
+            $arr[] = $key["idPelicula"];
+        }
+
+        $lenght = count($arr);
+        for ($i = 0; $i < $lenght; $i++) {
+            $arr[$i] = $i + 1;
+        }
+
+        $index = 0;
+        foreach ($original as $key) {
+            $sql = "UPDATE peliculas SET idPelicula = ? WHERE idPelicula = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(array($arr[$index], $key["idPelicula"]));
+            $index++;
+        }
     }
 }
