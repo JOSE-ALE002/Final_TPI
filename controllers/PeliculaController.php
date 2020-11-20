@@ -70,4 +70,13 @@ class PeliculaController
             $pelicula->ordenamiento();
         }
     }
+
+    public function movie()
+    {
+        require_once "models/Pelicula.php";
+        $movies = new Pelicula();
+        $movies->set_Id_Pelicula($_GET["id"]);
+        $movie = $movies->Search();
+        require_once "views/movie.php";
+    }
 }
