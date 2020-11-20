@@ -157,7 +157,7 @@
                 <a href="#section1" class="arrow__btn">‹</a>
                 <?php foreach ($pelis as $key) : ?>
                     <?php if ($key["idPelicula"] > 5 && $key["idPelicula"] <= 10) : ?>
-                        <div class="item">
+                        <div class="item" onClick='showMovie(<?php echo $key["idPelicula"] ?>);'>
                             <img src="<?= $key["imagen"] ?>" />
                         </div>
                     <?php endif ?>
