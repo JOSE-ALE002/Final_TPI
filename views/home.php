@@ -71,32 +71,28 @@
                     <?php foreach ($pelis as $key) : ?>
                         <?php if ($key["idPelicula"] <= 5) : ?>
                             <div class="item">
-                                <img src="<?= $key["imagen"] ?>" onClick='showMovie(<?php echo $key["idPelicula"] ?>);' />
+                                <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"]?>"><img src="<?= $key["imagen"] ?>"/></a>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="container pt-1">
-                                            <span class="text-danger"><i class="fas fa-heart"></i></span>
-                                            <span class="text-white ml-2">Likes?</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
+                                    
+                                    <div class="col-md-6 text-warning">
                                         <?php
                                         require_once "models/Pelicula.php";
                                         $p = new Pelicula();
 
                                         if ($p->verifyLike($key["idPelicula"], $_SESSION["id"])) { ?>
-                                            <a href="<?php echo BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="btn btn-outline-warning btn-sm btn-block"
+                                            <a href="<?php echo BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="text-danger"
                                             style="color: white;">
-                                                Ya no me gusta
+                                                <i class="fas fa-heart"></i>
                                             </a>
                                         <?php
                                         } else { ?>
-                                            <a href="<?php echo BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="btn btn-outline-danger btn-sm btn-block"
+                                            <a href="<?php echo BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="text-danger"
                                             style="color: white;">
-                                                Me gusta
+                                                <i class="far fa-heart"></i>
                                             </a>
                                         <?php } ?>
+                                        <!--Es ejemplo de la cantidad de likes-->
+                                        10,834
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +105,7 @@
                     <?php foreach ($pelis as $key) : ?>
                         <?php if ($key["idPelicula"] > 5 && $key["idPelicula"] <= 10) : ?>
                             <div class="item">
-                                <img src="<?= $key["imagen"] ?>" onClick='showMovie(<?php echo $key["idPelicula"] ?>);' />
+                            <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"]?>"><img src="<?= $key["imagen"] ?>"/></a>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -166,20 +162,15 @@
                 <?php foreach ($pelis as $key) : ?>
                     <?php if ($key["idPelicula"] <= 5) : ?>
                         <div class="item">
-                            <img src="<?= $key["imagen"] ?>" onClick='showMovie(<?php echo $key["idPelicula"] ?>);' />
+                            <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"]?>"><img src="<?= $key["imagen"] ?>"/></a>
+                            
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="container pt-1">
-                                        <span class="text-danger"><i class="fas fa-heart"></i></span>
-                                        <span class="text-white ml-2">Likes?</span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <a href="<?= BASE_DIR ?>Home/login" class="btn btn-outline-danger">
-                                        <i class="fas fa-heart"></i>
-                                        I LIKE
+                                <div class="col-md-6 text-warning">
+                                    <a href="<?php echo BASE_DIR . "Home/login" ?>" class="text-danger">
+                                        <i class="far fa-heart"></i>
                                     </a>
+                                    <!--Es ejemplo de la cantidad de likes-->
+                                    10,698
                                 </div>
                             </div>
                         </div>
@@ -222,4 +213,18 @@
             </section> -->
         </div>
     <?php endif ?>
+
+    <!--Intento de hacer una ventana modal-->
+    <!-- <aside id="login-register-modal">
+        <div class="content-modal">
+            <header>
+                <a href="#" class="close-modal">X</a>
+                <h2>Buen trabajo</h2>
+            </header>
+            <article></article>
+            <a href="#" class="btn-clse-modal"></a>
+        </div>
+    </aside> -->
+    
+
 </main>
