@@ -201,7 +201,6 @@
                 </div>
                 <div class="wrapper">
                     <section id="section1">
-                        <a href="#section2" class="arrow__btn">‹</a>
                         <?php foreach ($pelis as $key) : ?>
                             <?php if ($key["idPelicula"] <= 5) : ?>
                                 <div class="item bg-black">
@@ -219,18 +218,25 @@
                                 </div>
                             <?php endif ?>
                         <?php endforeach ?>
-                        <a href="#section2" class="arrow__btn">›</a>
                     </section>
                     <section id="section2">
-                        <a href="#section1" class="arrow__btn">‹</a>
                         <?php foreach ($pelis as $key) : ?>
                             <?php if ($key["idPelicula"] > 5 && $key["idPelicula"] <= 10) : ?>
-                                <div class="item">
-                                    <img src="<?= $key["imagen"] ?>" onClick='showMovie(<?php echo $key["idPelicula"] ?>);' />
+                                <div class="item bg-black">
+                                    <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"] ?>"><img src="<?= $key["imagen"] ?>" /></a>
+
+                                    <div class="row">
+                                        <div class="col-md-6 text-warning">
+                                            <a href="<?php echo BASE_DIR . "Home/login" ?>" class="text-danger">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                            <!--Es ejemplo de la cantidad de likes-->
+                                            10,698
+                                        </div>
+                                    </div>
                                 </div>
                             <?php endif ?>
                         <?php endforeach ?>
-                        <a href="#section1" class="arrow__btn">›</a>
                     </section>
 
                     <!-- SECCION OPCIONAL -->
