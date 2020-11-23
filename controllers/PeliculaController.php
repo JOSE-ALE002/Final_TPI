@@ -79,4 +79,16 @@ class PeliculaController
         $movie = $movies->Search();
         require_once "views/movie.php";
     }
+
+    //Metodo creado solo para pruevas en el desarrollo
+    public function show(){
+        $movie = (!isset($_GET['filter'])) ? [] : $_GET['filter'];
+        $sort = (!isset($_GET['sort'])) ? [] : $_GET['sort'];
+
+        var_dump($sort);
+
+        require_once "models/Pelicula.php";
+        $movies = new Pelicula();
+        $movies->searchFilter($movie, $sort);
+    }
 }
