@@ -264,6 +264,26 @@ class Pelicula extends Conexion
         return $result;
     }
 
+    public function searchFilter($movie,  $sort = [])
+    {
+        $sql="SELECT * FROM peliculas WHERE 
+            nombre LIKE '%".$movie."%' OR
+            descripcion LIKE '%".$movie."%' OR
+            idCategoria LIKE '%".$movie."%'";
+
+        $sql .= $this->moviesSort($sort);
+
+        $data = array();
+
+        $list = $this->conn->prepare($sql);
+        $list->execute();
+
+        $data = $list->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $data;
+        //var_dump($data);
+    }
+
     public function update()
     {
         $sql = "UPDATE peliculas SET nombre = ?, descripcion = ?, idCategoria = ?, idioma = ?, idCalidad = ?, precioCompra = ?, precioAlquiler = ?, stock = ?, imagen = ?, disponibilidad = ? WHERE idPelicula = ?";
@@ -283,7 +303,6 @@ class Pelicula extends Conexion
         </script>";
         }
     }
-
 
     public function delete()
     {
@@ -374,5 +393,42 @@ class Pelicula extends Conexion
             $stmt->execute(array($arr[$index], $key["idPelicula"]));
             $index++;
         }
+    }
+    
+      public function moviesSort($rules) {
+        echo "<h2>hova esta mierda</h2>";
+            foreach ($rules as $key => $value) {
+            var_dump($key);
+        }
+        echo "<h2>hova esta mierda</h2>";
+
+        $sql = "";
+        $fields = ['title', 'popularity']; // set available filters here
+        if (count($rules)) {
+          $i = 0;
+          foreach ($rules as $key => $value) {
+            $searchInFilters = array_search($key, $fields);
+            if ($searchInFilters === false) $searchInFilters = -1;
+            echo "<br>";
+            if ($searchInFilters >= 0  ) {
+              $value = strtoupper($value);
+              if ($value == 'ASC' || $value == 'DESC') $sql .= ($i == 0) ? " ORDER BY " : " , ";
+              switch ($key) {
+                case 'title':
+                  if ( $value == 'ASC' || $value == 'DESC' ) $sql .= " nombre " . $value ." "; 
+                  break;
+                case 'popularity':
+                  if ( $value == 'DESC' ) $sql .= " stock " . $value ." "; 
+                  break;
+                
+                default:
+                  # code...
+                  break;
+              }
+            }
+            $i++;
+          }
+        }
+        return $sql;
     }
 }
