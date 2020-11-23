@@ -23,33 +23,68 @@
       $html .= '<h2 class="text-danger">No hay coincidencias!!!</h2>';
     }else{
 
-      $html .= '<div class="row">';
+      $html .= '<div class="row px-1">';
       foreach ($moviesList as $key) :
-      $html .= '<div class="card mt-4 ml-2">
-                  <a href="'.BASE_DIR ."Pelicula/movie&id=" . $key["idPelicula"].'"><img src="'.$key["imagen"].'" style="width: 18rem; height: 26rem;"/></a>
+      $html .= '
+      <div class="col-md-3 px-1">
+      <div class="card" style="  background-color: #000;">
+                  <a href="'.BASE_DIR ."Pelicula/movie&id=" . $key["idPelicula"].'"><img src="'.$key["imagen"].'" style="width: 100%; height: 26rem;"/></a>
                   <div class="card-body text-warning">
                   <div class="row">';
                   if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) {
-                    if ($pelicula->verifyLike($key["idPelicula"], $_SESSION["id"])) {
-                      $html .= '<a href="'.BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] .'" type="button" class="text-danger"
-                      style="color: white;">
-                          <i class="fas fa-heart"></i>
-                      </a>';
+                    if ($pelicula->verifyLike($key["idPelicula"], $_SESSION["id"])) {                      
+                      $html .= '
+                      <div class="col">
+                          <a href="'.BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] .'" type="button" class="text-danger"
+                          style="color: white;">
+                          <span>
+                            <i class="fas fa-heart"></i>
+                          </span>
+
+                          <span class="text-warning">10,900</span>
+                        </a>
+                    </div>
+
+                    <div class="col">  
+                        <span class="float-right text-warning">$' . $key["precioCompra"] . '</span>
+                    </div>';
+                      
                     } else {
-                      $html .= '<a href="' . BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] . '" type="button" class="text-danger"
-                        style="color: white;">
+                      $html .= '
+                      <div class="col">
+                          <a href="'.BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] .'" type="button" class="text-danger"
+                          style="color: white;">
+                          <span>
                             <i class="far fa-heart"></i>
-                        </a>';
+                          </span>
+
+                          <span class="text-warning">10,900</span>
+                        </a>
+                    </div>
+
+                    <div class="col">  
+                        <span class="float-right text-warning">$' . $key["precioCompra"] . '</span>
+                    </div>';                        
                     }
                   }else{
-                    $html .= '<a href="'.BASE_DIR. "Home/login" . '" class="text-danger">
-                      <i class="far fa-heart"></i>
-                  </a>';
+                    $html .= '
+                      <div class="col">
+                          <a href="' . BASE_DIR . "Home/login" . '" class="text-danger text-decoration-none">
+                          <span>
+                            <i class="far fa-heart"></i>
+                          </span>
+
+                          <span class="text-warning">10,900</span>
+                        </a>
+                    </div>
+
+                    <div class="col">  
+                        <span class="float-right text-warning">$' . $key["precioCompra"] . '</span>
+                    </div>';
                   }
                   $html .= '
-                  <!--Es ejemplo de la cantidad de likes-->
-                <div>10,698</div>
-                <div class="col"><span class="float-right"> $ '.$key["precioCompra"].'</span></div>
+                         
+                </div>
                 </div>
               </div>
         </div>';
@@ -58,9 +93,3 @@
     }
   }
   echo $html;
-
-
-
-
-  
-?>

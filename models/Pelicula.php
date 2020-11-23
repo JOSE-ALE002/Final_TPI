@@ -403,7 +403,7 @@ class Pelicula extends Conexion
           foreach ($rules as $key => $value) {
             $searchInFilters = array_search($key, $fields);
             if ($searchInFilters === false) $searchInFilters = -1;
-            echo "<br>";
+            // echo "<br>";
             if ($searchInFilters >= 0  ) {
               $value = strtoupper($value);
               if ($value == 'ASC' || $value == 'DESC') $sql .= ($i == 0) ? " ORDER BY " : " , ";

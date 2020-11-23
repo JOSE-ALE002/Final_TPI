@@ -154,7 +154,7 @@
             <!-- Codigo para el resto de las pelis-->
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <nav id="sidebarMenu" class="col-md-2">
                         <div class="sidebar-sticky pt-3">
                             <form action="">
                                 <div class="form-input pt-3">
@@ -175,7 +175,7 @@
                             </form>
                         </div>
                     </nav>
-                    <section role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" id="results-movies">
+                    <section role="main" class="col-md-10" id="results-movies">
                     </section>
                 <?php endif ?>
             <?php endif ?>
@@ -265,7 +265,7 @@
                 <!-- Codigo para el resto de las pelis sin secion-->
                 <div class="container-fluid">
                     <div class="row">
-                        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                        <nav id="sidebarMenu" class="col-md-2 d-md-block bg-light sidebar collapse">
                             <div class="sidebar-sticky pt-3">
                                 <form action="">
                                     <div class="form-input pt-3">
@@ -286,7 +286,7 @@
                                 </form>
                             </div>
                         </nav>
-                        <section role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" id="results-movies">
+                        <section role="main" class="col-md-10" id="results-movies">
                         </section>
                     <?php endif ?>
 
