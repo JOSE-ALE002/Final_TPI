@@ -24,6 +24,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(5, auto);
   margin: 20px 0;
+  animation: cambio 20s infinite ease;  
 }
 .wrapper > section > .item {
   padding: 0 2px;
@@ -34,10 +35,12 @@ h1 {
   width: 100%;
 }
 .wrapper > section > .item:hover {
-  margin: 0 40px;
+  margin: 0 20px;
   transform: scale(1.1);
 }
-.wrapper > section > a {
+
+/* Estilos de botones laterales */
+/* .wrapper > section > a {
   position: absolute;
   color: #fff;
   text-decoration: none;
@@ -59,7 +62,7 @@ h1 {
   bottom: 0;
   right: 0;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, black 100%);
-}
+} */
 
 .jumbotron {
   background-image: url("https://images3.alphacoders.com/801/thumb-1920-801817.jpg");
@@ -84,4 +87,13 @@ h1 {
 	background: #fff;
 	color: #000;
 }
+
+@keyframes cambio {
+  0% {margin-left: 0;}
+  45% {margin-left: 0;}
+
+  50% {margin-left: -100%;}
+  100% {margin-left: -100%;}
+}
+
 
