@@ -396,12 +396,6 @@ class Pelicula extends Conexion
     }
     
       public function moviesSort($rules) {
-        echo "<h2>hova esta mierda</h2>";
-            foreach ($rules as $key => $value) {
-            var_dump($key);
-        }
-        echo "<h2>hova esta mierda</h2>";
-
         $sql = "";
         $fields = ['title', 'popularity']; // set available filters here
         if (count($rules)) {

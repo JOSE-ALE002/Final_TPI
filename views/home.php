@@ -134,6 +134,32 @@
                 <a href="#section1" class="arrow__btn">›</a>
             </section> -->
             </div>
+            <!-- Codigo para el resto de las pelis-->
+            <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="sidebar-sticky pt-3">
+                        <form action="">
+                            <div class="form-input pt-3">
+                                <input type="text" name="search" id="search" placeholder="Buscar...">
+                            </div>
+                            <div class="input-group pt-3">
+                                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                <option value="ASC" selected>Ascendente</option>
+                                    <option value="DESC">Descendente</option>
+                                </select>
+                            </div>
+                            <div class="form-check pt-3">
+                                <input class="form-check-input" type="checkbox" value="DESC" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Mas Populares
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            <section role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" id="results-movies">
+            </section> 
         <?php endif ?>
     <?php endif ?>
 
@@ -161,7 +187,7 @@
                 <a href="#section2" class="arrow__btn">‹</a>
                 <?php foreach ($pelis as $key) : ?>
                     <?php if ($key["idPelicula"] <= 5) : ?>
-                        <div class="item">
+                        <div class="item bg-black">
                             <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"]?>"><img src="<?= $key["imagen"] ?>"/></a>
                             
                             <div class="row">
@@ -212,6 +238,33 @@
                 <a href="#section1" class="arrow__btn">›</a>
             </section> -->
         </div>
+
+        <!-- Codigo para el resto de las pelis sin secion-->
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="sidebar-sticky pt-3">
+                        <form action="">
+                            <div class="form-input pt-3">
+                                <input type="text" name="search" id="search" placeholder="Buscar...">
+                            </div>
+                            <div class="input-group pt-3">
+                                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                <option value="ASC" selected>Ascendente</option>
+                                    <option value="DESC">Descendente</option>
+                                </select>
+                            </div>
+                            <div class="form-check pt-3">
+                                <input class="form-check-input" type="checkbox" value="DESC" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Mas Populares
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            <section role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" id="results-movies">
+            </section>        
     <?php endif ?>
 
     <!--Intento de hacer una ventana modal-->
@@ -225,6 +278,4 @@
             <a href="#" class="btn-clse-modal"></a>
         </div>
     </aside> -->
-    
-
 </main>
