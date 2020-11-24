@@ -34,7 +34,9 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
-                    <p id="error"></p>
+                    <div id="error" class="alert alert-danger d-none" role="alert">
+                        Error! Este correo ya se a registrado
+                    </div>
                 </form>
             </div>
         </div>
