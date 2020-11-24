@@ -92,4 +92,73 @@
       $html .= '</div>';
     }
   }
+
+  if(isset($_REQUEST['checked'])){
+    $filter = $_REQUEST['checked'];
+
+    if($filter == 'option1'){
+      $availability = -1;
+      $moviesList = $pelicula->showMoviesAdmin($availability);
+    }else if($filter == 'option2'){
+      $availability = 1;
+      $moviesList = $pelicula->showMoviesAdmin($availability);
+    }else{
+      $availability = 0;
+      $moviesList = $pelicula->showMoviesAdmin($availability);
+    }
+
+    if(empty($moviesList)){
+      $html .= '<h2 class="text-danger">No se encontraron Peliculas</h2>';
+    }else{
+      $html .= '
+      <div class="mx-auto bg-secondary">
+      <table class="table table-striped text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Género</th>
+                <th scope="col">Idioma</th>
+                <th scope="col">Calidad</th>
+                <th scope="col">Venta</th>
+                <th scope="col">Alquiler</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+      ';
+      foreach ($moviesList as $key) {
+        $html .= '
+        <tr>
+          <td>'. $key["idPelicula"] .'</td>
+          <td><img src="'.$key["imagen"].'" style="width: 100%; height: 7rem;"/></td>
+          <td>'. $key["nombre"] .'</td>
+          <td>'. $key["descripcion"] .'</td>
+          <td>'. $key["nombreCategoria"] .'</td>
+          <td>'. $key["idioma"] .'</td>
+          <td>'. $key["calidad"] .'</td>
+          <td> $'. $key["precioCompra"] .'</td>
+          <td> $'. $key["precioAlquiler"] .'</td>
+          <td>'. $key["stock"] .'</td>
+          <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                  <a href="'. BASE_DIR . "Pelicula/update&id=" . $key["idPelicula"] .'" type="button" class="btn btn-primary">
+                      Actualizar
+                  </a>
+                  <a href="'. BASE_DIR ."Pelicula/delete&id=" . $key["idPelicula"] .'" type="button" class="btn btn-danger">
+                      Eliminar
+                  </a>
+              </div>
+          </td>
+      </tr>
+        ';
+      }
+      $html .= '</tbody>
+      </table>
+      </div>';
+    }
+  }
   echo $html;

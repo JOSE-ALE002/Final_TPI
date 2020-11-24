@@ -1,5 +1,6 @@
 <main>
     <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) : ?>
+        <div class="mx-auto">
         <?php if ($_SESSION["rol"] != "Usuario") : ?>
             <div class="alert alert-success" role="alert">
                 <h4 class="alert-heading">Bienvenido de nuevo Administrador: <?= $_SESSION["nombre"] ?></h4>
@@ -7,43 +8,23 @@
                 <hr>
                 <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
             </div>
-            <table class="table table-striped text-center">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Género</th>
-                        <th scope="col">Idioma</th>
-                        <th scope="col">Calidad</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($pelis as $key) : ?>
-                        <tr>
-                            <td><?= $key["idPelicula"] ?></td>
-                            <td><?= $key["nombre"] ?></td>
-                            <td><?= $key["descripcion"] ?></td>
-                            <td><?= $key["nombreCategoria"] ?></td>
-                            <td><?= $key["idioma"] ?></td>
-                            <td><?= $key["calidad"] ?></td>
-                            <td><?= $key["stock"] ?></td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="<?php echo BASE_DIR . "Pelicula/update&id=" . $key["idPelicula"] ?>" type="button" class="btn btn-primary">
-                                        Actualizar
-                                    </a>
-                                    <a href="<?= BASE_DIR ?>Pelicula/delete&id=<?= $key["idPelicula"] ?>" type="button" class="btn btn-danger">
-                                        Eliminar
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+            <div class="bg-light p-4 ml-5 mr-5">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                    <label class="form-check-label" for="inlineRadio1">Todas</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Disponible</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                    <label class="form-check-label" for="inlineRadio3">Indisponible</label>
+                </div>
+            </div>
+            <section role="main" class="col-md-10 mx-auto" id="results-admin-movies">
+            </section>
+        </div>
         <?php endif ?>
 
         <?php if ($_SESSION["rol"] == "Usuario") : ?>

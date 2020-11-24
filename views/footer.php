@@ -1,4 +1,5 @@
 <script src="<?= BASE_DIR ?>assets/js/filter.js"></script>
+<script src="<?= BASE_DIR ?>assets/js/filteradmin.js"></script>
   
 <!-- Optional JavaScript -->
   

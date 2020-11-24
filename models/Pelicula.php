@@ -436,4 +436,21 @@ class Pelicula extends Conexion
 
         return $resp["COUNT(*)"];
     }
+
+    public function showMoviesAdmin($availability)
+    {
+        if($availability != -1){
+            $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE disponibilidad = ?";
+            $list = $this->conn->prepare($sql_leer);
+            $resultado = $list->execute(array($availability));
+        }else{
+            $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
+            $list = $this->conn->prepare($sql_leer);
+            $resultado = $list->execute();
+        }
+        
+        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultado;
+    }
 }
