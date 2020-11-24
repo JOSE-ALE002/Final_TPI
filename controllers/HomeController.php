@@ -44,7 +44,10 @@ class HomeController
             $user->setEmail($_POST["email"]);
             $user->setPassword($_POST["contra"], 1);
 
-            return $user->signup();
+            if($user->signup()){
+                $user->setPassword($_POST["contra"], 2);
+                $user->login();
+            }
         }
     }
 

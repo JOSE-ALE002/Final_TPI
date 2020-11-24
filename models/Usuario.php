@@ -150,17 +150,15 @@ class Usuario extends Conexion
             if ($nRow == 1) {
             }else{
                 if($stmt = $this->conn->query($query)){
-                    require_once "controllers/HomeController.php";
-                    $signup = new HomeController();
-                    $signup->login($this->getEmail(), $this->getPassword());
+                    return true;
                 }
             }
         }
         echo "
         <script>
-            document.getElementById('error').innerHTML='Error! usuario o contraseña incorrectos';
+            document.getElementById('error').classList.remove('d-none');
             setTimeout(function() {
-                document.getElementById('error').innerHTML='';
+                document.getElementById('error').classList.add('d-none');
             }, 3000);
         </script>";
     }
