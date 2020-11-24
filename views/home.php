@@ -90,7 +90,7 @@
                                             </a>
                                         <?php } ?>
                                         <!--Es ejemplo de la cantidad de likes-->
-                                        10,834
+                                        <?php echo $pelicula->countLikes($key["idPelicula"])?>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                                             </a>
                                         <?php } ?>
                                         <!--Es ejemplo de la cantidad de likes-->
-                                        10,834
+                                        <?php echo $pelicula->countLikes($key["idPelicula"])?>
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                                                 <i class="far fa-heart"></i>
                                             </a>
                                             <!--Es ejemplo de la cantidad de likes-->
-                                            10,698
+                                            <?php echo $pelicula->countLikes($key["idPelicula"])?>
                                         </div>
                                     </div>
                                 </div>
@@ -223,7 +223,9 @@
                         <?php foreach ($pelis as $key) : ?>
                             <?php if ($key["idPelicula"] > 5 && $key["idPelicula"] <= 10) : ?>
                                 <div class="item bg-black">
-                                    <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"] ?>"><img src="<?= $key["imagen"] ?>" /></a>
+                                    <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"] ?>">
+                                        <img src="<?= $key["imagen"] ?>" />
+                                    </a>
 
                                     <div class="row">
                                         <div class="col-md-6 text-warning">
@@ -231,7 +233,7 @@
                                                 <i class="far fa-heart"></i>
                                             </a>
                                             <!--Es ejemplo de la cantidad de likes-->
-                                            10,698
+                                            <?php echo $pelicula->countLikes($key["idPelicula"])?>
                                         </div>
                                     </div>
                                 </div>

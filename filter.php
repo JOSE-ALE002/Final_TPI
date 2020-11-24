@@ -41,7 +41,7 @@
                             <i class="fas fa-heart"></i>
                           </span>
 
-                          <span class="text-warning">10,900</span>
+                          <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
                         </a>
                     </div>
 
@@ -58,7 +58,7 @@
                             <i class="far fa-heart"></i>
                           </span>
 
-                          <span class="text-warning">10,900</span>
+                          <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
                         </a>
                     </div>
 
@@ -74,7 +74,7 @@
                             <i class="far fa-heart"></i>
                           </span>
 
-                          <span class="text-warning">10,900</span>
+                          <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
                         </a>
                     </div>
 

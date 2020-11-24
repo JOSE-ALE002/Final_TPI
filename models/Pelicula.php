@@ -266,10 +266,10 @@ class Pelicula extends Conexion
 
     public function searchFilter($movie,  $sort = [])
     {
-        $sql="SELECT * FROM peliculas WHERE 
-            nombre LIKE '%".$movie."%' OR
-            descripcion LIKE '%".$movie."%' OR
-            idCategoria LIKE '%".$movie."%'";
+        $sql = "SELECT * FROM peliculas WHERE 
+            nombre LIKE '%" . $movie . "%' OR
+            descripcion LIKE '%" . $movie . "%' OR
+            idCategoria LIKE '%" . $movie . "%'";
 
         $sql .= $this->moviesSort($sort);
 
@@ -279,7 +279,7 @@ class Pelicula extends Conexion
         $list->execute();
 
         $data = $list->fetchAll(PDO::FETCH_ASSOC);
-        
+
         return $data;
         //var_dump($data);
     }
@@ -394,35 +394,46 @@ class Pelicula extends Conexion
             $index++;
         }
     }
-    
-      public function moviesSort($rules) {
+
+    public function moviesSort($rules)
+    {
         $sql = "";
         $fields = ['title', 'popularity']; // set available filters here
         if (count($rules)) {
-          $i = 0;
-          foreach ($rules as $key => $value) {
-            $searchInFilters = array_search($key, $fields);
-            if ($searchInFilters === false) $searchInFilters = -1;
-            // echo "<br>";
-            if ($searchInFilters >= 0  ) {
-              $value = strtoupper($value);
-              if ($value == 'ASC' || $value == 'DESC') $sql .= ($i == 0) ? " ORDER BY " : " , ";
-              switch ($key) {
-                case 'title':
-                  if ( $value == 'ASC' || $value == 'DESC' ) $sql .= " nombre " . $value ." "; 
-                  break;
-                case 'popularity':
-                  if ( $value == 'DESC' ) $sql .= " stock " . $value ." "; 
-                  break;
-                
-                default:
-                  # code...
-                  break;
-              }
+            $i = 0;
+            foreach ($rules as $key => $value) {
+                $searchInFilters = array_search($key, $fields);
+                if ($searchInFilters === false) $searchInFilters = -1;
+                // echo "<br>";
+                if ($searchInFilters >= 0) {
+                    $value = strtoupper($value);
+                    if ($value == 'ASC' || $value == 'DESC') $sql .= ($i == 0) ? " ORDER BY " : " , ";
+                    switch ($key) {
+                        case 'title':
+                            if ($value == 'ASC' || $value == 'DESC') $sql .= " nombre " . $value . " ";
+                            break;
+                        case 'popularity':
+                            if ($value == 'DESC') $sql .= " stock " . $value . " ";
+                            break;
+
+                        default:
+                            # code...
+                            break;
+                    }
+                }
+                $i++;
             }
-            $i++;
-          }
         }
         return $sql;
+    }
+
+    public function countLikes($idPelicula)
+    {
+        $sql = "SELECT COUNT(*) FROM valoraciones WHERE idPelicula = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(array($idPelicula));
+        $resp = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $resp["COUNT(*)"];
     }
 }
