@@ -221,10 +221,10 @@ class Pelicula extends Conexion
 
     public function showMovies()
     {
-        $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria);";
+        $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE disponibilidad = ?";
         $list = $this->conn->prepare($sql_leer);
-        $list->execute();
-
+        
+        $resultado = $list->execute(array(1));
         $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultado;
@@ -266,10 +266,10 @@ class Pelicula extends Conexion
 
     public function searchFilter($movie,  $sort = [])
     {
-        $sql = "SELECT * FROM peliculas WHERE 
-            nombre LIKE '%" . $movie . "%' OR
+        $sql = "SELECT * FROM peliculas WHERE (disponibilidad = '1') AND
+            (nombre LIKE '%" . $movie . "%' OR
             descripcion LIKE '%" . $movie . "%' OR
-            idCategoria LIKE '%" . $movie . "%'";
+            idCategoria LIKE '%" . $movie . "%')";
 
         $sql .= $this->moviesSort($sort);
 
