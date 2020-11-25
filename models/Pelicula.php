@@ -223,7 +223,7 @@ class Pelicula extends Conexion
     {
         $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE disponibilidad = ?";
         $list = $this->conn->prepare($sql_leer);
-        
+
         $resultado = $list->execute(array(1));
         $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
 
@@ -393,6 +393,10 @@ class Pelicula extends Conexion
             $stmt->execute(array($arr[$index], $key["idPelicula"]));
             $index++;
         }
+
+        $sql = "ALTER TABLE peliculas AUTO_INCREMENT =" . ($lenght-1);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
     }
 
     public function moviesSort($rules)
@@ -439,16 +443,16 @@ class Pelicula extends Conexion
 
     public function showMoviesAdmin($availability)
     {
-        if($availability != -1){
+        if ($availability != -1) {
             $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE disponibilidad = ?";
             $list = $this->conn->prepare($sql_leer);
             $resultado = $list->execute(array($availability));
-        }else{
+        } else {
             $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
             $list = $this->conn->prepare($sql_leer);
             $resultado = $list->execute();
         }
-        
+
         $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
 
         return $resultado;
