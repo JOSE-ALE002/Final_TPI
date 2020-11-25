@@ -437,15 +437,18 @@ class Pelicula extends Conexion
         return $resp["COUNT(*)"];
     }
 
-    public function showMoviesAdmin($availability)
+    public function showMoviesAdmin($search, $availability)
     {
         if($availability != -1){
-            $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE disponibilidad = ?";
-            $list = $this->conn->prepare($sql_leer);
+            $sql = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE (disponibilidad = ?) AND
+            (nombre  LIKE '%" . $search . "%' OR descripcion LIKE '%" . $search . "%')";
+            $list = $this->conn->prepare($sql);
             $resultado = $list->execute(array($availability));
         }else{
-            $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
-            $list = $this->conn->prepare($sql_leer);
+            $sql = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE
+            nombre  LIKE '%" . $search . "%' OR descripcion LIKE '%" . $search . "%'";
+
+            $list = $this->conn->prepare($sql);
             $resultado = $list->execute();
         }
         

@@ -93,18 +93,21 @@
     }
   }
 
-  if(isset($_REQUEST['checked'])){
+  if(isset($_REQUEST['checked']) || isset($_REQUEST['searchAdmin'])){
+
+
     $filter = $_REQUEST['checked'];
+    $search = $_REQUEST["searchAdmin"];
 
     if($filter == 'option1'){
       $availability = -1;
-      $moviesList = $pelicula->showMoviesAdmin($availability);
+      $moviesList = $pelicula->showMoviesAdmin($search, $availability);
     }else if($filter == 'option2'){
       $availability = 1;
-      $moviesList = $pelicula->showMoviesAdmin($availability);
+      $moviesList = $pelicula->showMoviesAdmin($search, $availability);
     }else{
       $availability = 0;
-      $moviesList = $pelicula->showMoviesAdmin($availability);
+      $moviesList = $pelicula->showMoviesAdmin($search, $availability);
     }
 
     if(empty($moviesList)){

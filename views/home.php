@@ -21,6 +21,9 @@
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
                     <label class="form-check-label" for="inlineRadio3">Indisponible</label>
                 </div>
+                <div class="form-input form-check-inline pt-3">
+                    <input type="text" name="search" id="searchAdmin" placeholder="Buscar...">
+                </div>
             </div>
             <section role="main" class="col-md-10 mx-auto" id="results-admin-movies">
             </section>
