@@ -374,7 +374,10 @@ class Pelicula extends Conexion
 
     public function ordenamiento()
     {
-        $original = $this->showMovies();
+        $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
+        $list = $this->conn->prepare($sql_leer);
+        $list->execute();
+        $original = $list->fetchAll(PDO::FETCH_ASSOC);
         $arr = [];
 
         foreach ($original as $key) {
