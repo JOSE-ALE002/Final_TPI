@@ -98,7 +98,7 @@
 
     if($filter == 'option1'){
       $availability = -1;
-      $moviesList = $pelicula->showMoviesAdmin($availability);
+      $moviesList = $pelicula->ordenamiento(2);
     }else if($filter == 'option2'){
       $availability = 1;
       $moviesList = $pelicula->showMoviesAdmin($availability);

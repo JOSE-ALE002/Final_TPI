@@ -372,34 +372,51 @@ class Pelicula extends Conexion
         return $fav;
     }
 
-    public function ordenamiento()
+    public function ordenamiento($valor)
     {
-        $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
-        $list = $this->conn->prepare($sql_leer);
-        $list->execute();
-        $original = $list->fetchAll(PDO::FETCH_ASSOC);
-        $arr = [];
+        if ($valor == 1) {
+            $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
+            $list = $this->conn->prepare($sql_leer);
+            $list->execute();
+            $original = $list->fetchAll(PDO::FETCH_ASSOC);
+            $arr = [];
 
-        foreach ($original as $key) {
-            $arr[] = $key["idPelicula"];
-        }
+            $lenght = count($original);
+            for ($i = 0; $i < $lenght; $i++) {
+                $arr[$i] = $i + 1;
+            }
 
-        $lenght = count($arr);
-        for ($i = 0; $i < $lenght; $i++) {
-            $arr[$i] = $i + 1;
-        }
+            $index = 0;
+            foreach ($original as $key) {
+                $sql = "UPDATE peliculas SET idPelicula = ? WHERE idPelicula = ?";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute(array($arr[$index], $key["idPelicula"]));
+                $index++;
+            }
 
-        $index = 0;
-        foreach ($original as $key) {
-            $sql = "UPDATE peliculas SET idPelicula = ? WHERE idPelicula = ?";
+            $sql = "ALTER TABLE peliculas AUTO_INCREMENT =" . ($lenght - 1);
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute(array($arr[$index], $key["idPelicula"]));
-            $index++;
-        }
+            $stmt->execute();
+        } else {
+            $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
+            $list = $this->conn->prepare($sql_leer);
+            $list->execute();
+            $original = $list->fetchAll(PDO::FETCH_ASSOC);
 
-        $sql = "ALTER TABLE peliculas AUTO_INCREMENT =" . ($lenght-1);
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
+            for ($i = 1; $i < count($original); $i++) {
+                $clave = $original[$i];
+                $j = $i - 1;
+                //Comparar el valor seleccionado con todos los valores anteriores
+                while ($j >= 0 && $original[$j] > $clave) {
+                    //Insertar el valor donde corresponda
+                    $original[$j + 1] = $original[$j];
+                    $j = $j - 1;
+                }
+                $original[$j + 1] = $clave;                
+            }
+
+            return $original;
+        }
     }
 
     public function moviesSort($rules)

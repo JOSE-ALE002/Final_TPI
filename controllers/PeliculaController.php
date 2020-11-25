@@ -67,7 +67,7 @@ class PeliculaController
         if ($_GET) {
             $pelicula->set_Id_Pelicula($_GET["id"]);
             $pelicula->delete();
-            $pelicula->ordenamiento();
+            $pelicula->ordenamiento(1);
         }
     }
 
