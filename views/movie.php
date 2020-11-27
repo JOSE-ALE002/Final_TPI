@@ -12,10 +12,10 @@
             <p class="text-muted">Calidad: <?= $movie["calidad"] ?></p>
             <p class="text-muted">Categoria: <?= $movie["nombreCategoria"] ?></p>
             <div class="row col">
-                <div>
+                <div class="col-12">
                     <p class="text-muted">Comprar: $ <?= $movie["precioAlquiler"] ?></p>
                 </div>
-                <div>
+                <div class="col-12">
                     <p class="text-muted">Alquilar: $ <?= $movie["precioCompra"] ?></p>
                 </div>
             </div>

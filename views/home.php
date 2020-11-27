@@ -64,17 +64,17 @@
                                         $p = new Pelicula();
 
                                         if ($p->verifyLike($key["idPelicula"], $_SESSION["id"])) { ?>
-                                            <a href="<?php echo BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="text-danger" style="color: white;">
+                                            <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                                 <i class="fas fa-heart"></i>
+                                                <span class="text-warning"><?php echo $p->countLikes($key["idPelicula"]); ?></span>
                                             </a>
                                         <?php
                                         } else { ?>
-                                            <a href="<?php echo BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="text-danger" style="color: white;">
+                                             <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="dislike">
                                                 <i class="far fa-heart"></i>
+                                                <span class="text-warning"><?php echo $p->countLikes($key["idPelicula"]); ?></span>
                                             </a>
                                         <?php } ?>
-                                        <!--Es ejemplo de la cantidad de likes-->
-                                        <?php echo $pelicula->countLikes($key["idPelicula"])?>
                                     </div>
                                 </div>
                             </div>
@@ -95,17 +95,17 @@
                                         $p = new Pelicula();
 
                                         if ($p->verifyLike($key["idPelicula"], $_SESSION["id"])) { ?>
-                                            <a href="<?php echo BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="text-danger" style="color: white;">
+                                            <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                                 <i class="fas fa-heart"></i>
+                                                <span class="text-warning"><?php echo $p->countLikes($key["idPelicula"]); ?></span>
                                             </a>
                                         <?php
                                         } else { ?>
-                                            <a href="<?php echo BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] ?>" type="button" class="text-danger" style="color: white;">
+                                            <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="dislike">
                                                 <i class="far fa-heart"></i>
+                                                <span class="text-warning"><?php echo $p->countLikes($key["idPelicula"]); ?></span>
                                             </a>
                                         <?php } ?>
-                                        <!--Es ejemplo de la cantidad de likes-->
-                                        <?php echo $pelicula->countLikes($key["idPelicula"])?>
                                     </div>
                                 </div>
                             </div>
@@ -192,11 +192,10 @@
 
                                     <div class="row">
                                         <div class="col-md-6 text-warning">
-                                            <a href="<?php echo BASE_DIR . "Home/login" ?>" class="text-danger">
+                                            <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                                 <i class="far fa-heart"></i>
+                                                <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                             </a>
-                                            <!--Es ejemplo de la cantidad de likes-->
-                                            <?php echo $pelicula->countLikes($key["idPelicula"])?>
                                         </div>
                                     </div>
                                 </div>
@@ -213,11 +212,10 @@
 
                                     <div class="row">
                                         <div class="col-md-6 text-warning">
-                                            <a href="<?php echo BASE_DIR . "Home/login" ?>" class="text-danger">
+                                         <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                                 <i class="far fa-heart"></i>
+                                                <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                             </a>
-                                            <!--Es ejemplo de la cantidad de likes-->
-                                            <?php echo $pelicula->countLikes($key["idPelicula"])?>
                                         </div>
                                     </div>
                                 </div>

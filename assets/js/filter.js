@@ -39,5 +39,53 @@ async function get_Movies(popularity){
 	const request = await fetch(`/Final_TPI/filter.php?movies=${valueSearch}&orderBy=${orderSelect}&popularity=${popularity}`)
 	const selectOptions = await request.text()
 	resultMovies.innerHTML = selectOptions
+
+	let likesCount = document.querySelectorAll(".like-count");
+
+	likesCount.forEach(likeBtn => likeBtn.addEventListener("click", likeOrDislike));
 }
 
+const likeOrDislike = async (event) => {
+
+	event.preventDefault();
+
+	let elementoNombre = event.target.tagName;
+	let elementoPresionado = null;
+
+	if(elementoNombre == "svg") {
+		elementoPresionado = event.target.parentElement;
+	} else if(elementoNombre == "path") {
+		elementoPresionado = event.target.parentElement.parentElement;
+	} else if(elementoNombre == "A") {
+		elementoPresionado = event.target;
+	}
+
+	let datos = new FormData();
+	datos.append("idPelicula", elementoPresionado.getAttribute("data-idpelicula"));
+	datos.append("idUsuario", elementoPresionado.getAttribute("data-idusuario"));
+	datos.append("estado", elementoPresionado.getAttribute("data-estado"));
+
+	const options = {
+		method: "POST",
+		body: datos		
+	}
+
+	const peticion = await fetch("/Final_TPI/like.php", options);
+	const response = await peticion.json();
+
+	if(response.result == "exito") {
+		
+		let numLikes = response.numLikes;
+
+		if(response.accion == "like") {
+			elementoPresionado.setAttribute("data-estado", "like");
+			elementoPresionado.innerHTML =  `<i class='fas fa-heart'></i> <span class="text-warning">${numLikes}</span>`;
+		} else {
+			elementoPresionado.setAttribute("data-estado", "dislike");
+			elementoPresionado.innerHTML = `<i class='far fa-heart'></i> <span class="text-warning">${numLikes}</span>`;
+		}
+
+
+	}
+
+}

@@ -39,6 +39,17 @@ h1 {
   transform: scale(1.1);
 }
 
+.div-movie {
+  transition: 300ms all;
+}
+
+.div-movie:hover {
+  transform: scale(1.1, 1.1);
+  z-index: 1000;
+}
+
+
+
 /* Estilos de botones laterales */
 /* .wrapper > section > a {
   position: absolute;

@@ -334,21 +334,21 @@ class Pelicula extends Conexion
         $stmt = $this->conn->prepare($sql);
 
         if ($stmt->execute(array($user, $this->get_Id_Pelicula()))) {
-            header('location:' . BASE_DIR);
+            return true;
         } else {
-            echo "Error";
+            return false;
         }
     }
 
-    public function dislike($idPelicula, $idUsuario)
+    public function dislike($idUsuario)
     {
         $sql = "DELETE FROM `valoraciones` WHERE idPelicula = ? AND idUsuario = ?";
         $stmt = $this->conn->prepare($sql);
 
-        if ($stmt->execute(array($idPelicula, $idUsuario))) {
-            header('location:' . BASE_DIR);
+        if ($stmt->execute(array($this->get_Id_Pelicula(), $idUsuario))) {
+            return true;
         } else {
-            echo "Error";
+            return false;
         }
     }
 

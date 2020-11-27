@@ -26,23 +26,25 @@
       $html .= '<div class="row px-1">';
       foreach ($moviesList as $key) :
       $html .= '
-      <div class="col-md-3 px-1">
+      <div class="col-md-3 px-1 div-movie">
       <div class="card" style="  background-color: #000;">
                   <a href="'.BASE_DIR ."Pelicula/movie&id=" . $key["idPelicula"].'"><img src="'.$key["imagen"].'" style="width: 100%; height: 26rem;"/></a>
                   <div class="card-body text-warning">
                   <div class="row">';
                   if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) {
+
                     if ($pelicula->verifyLike($key["idPelicula"], $_SESSION["id"])) {                      
+                      $estado = "like";
+                      
                       $html .= '
                       <div class="col">
-                          <a href="'.BASE_DIR . "Home/dislike&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] .'" type="button" class="text-danger"
-                          style="color: white;">
-                          <span>
-                            <i class="fas fa-heart"></i>
-                          </span>
+                        <span class="text-danger">
+                            <a href="#" class="like-count text-danger" data-idpelicula="'.$key["idPelicula"].'" data-idusuario="'.$_SESSION["id"].'" data-estado="'.$estado.'">
+                              <i class="fas fa-heart"></i>
+                              <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
+                            </a>
 
-                          <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
-                        </a>
+                        </span>
                     </div>
 
                     <div class="col">  
@@ -50,16 +52,18 @@
                     </div>';
                       
                     } else {
+
+                      $estado = "dislike";
+
                       $html .= '
                       <div class="col">
-                          <a href="'.BASE_DIR . "Home/like&id=" . $key["idPelicula"] . "&idUser=" . $_SESSION["id"] .'" type="button" class="text-danger"
-                          style="color: white;">
-                          <span>
+                        <span class="text-danger">
+                          <a href="#" class="like-count text-danger" data-idpelicula="'.$key["idPelicula"].'" data-idusuario="'.$_SESSION["id"].'" data-estado="'.$estado.'">
                             <i class="far fa-heart"></i>
-                          </span>
+                            <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
+                          </a>
 
-                          <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
-                        </a>
+                      </span>
                     </div>
 
                     <div class="col">  
