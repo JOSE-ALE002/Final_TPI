@@ -1,4 +1,5 @@
 <main>
+
     <div class="card mb-3 text-light" style="background-color: #212F3C;">
     <div class="row no-gutters">
         <div class="col-md-4">
@@ -11,15 +12,21 @@
             <p class="text-muted">Idioma: <?= $movie["idioma"] ?></p>
             <p class="text-muted">Calidad: <?= $movie["calidad"] ?></p>
             <p class="text-muted">Categoria: <?= $movie["nombreCategoria"] ?></p>
-            <div class="row col">
-                <div class="col-12">
-                    <p class="text-muted">Comprar: $ <?= $movie["precioAlquiler"] ?></p>
+
+            <div>
+            </div>
+
+            <div class="row col-12 mt-2" data-idpelicula="<?php echo $movie["idPelicula"]; ?>" data-idusuario="<?php echo $_SESSION['id']; ?>">
+                <div class="row col-12">
+                    <a class="btn btn-success btn-comprar" data-precio="<?php echo $movie['precioCompra'];?>">Comprar: $ <?= $movie["precioCompra"]; ?></a>
+                    
                 </div>
-                <div class="col-12">
-                    <p class="text-muted">Alquilar: $ <?= $movie["precioCompra"] ?></p>
+
+                <div class="row col-12 mt-3">
+                    <a class="btn btn-danger btn-alquilar" data-precio="<?php echo $movie['precioAlquiler'];?>">Alquilar: $ <?= $movie["precioAlquiler"]; ?></a>
                 </div>
             </div>
-            <a href="">Add Card</a>
+
         </div>
         </div>
     </div>

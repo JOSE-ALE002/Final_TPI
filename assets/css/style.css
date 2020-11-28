@@ -48,7 +48,9 @@ h1 {
   z-index: 1000;
 }
 
-
+.btn-comprar:hover, .btn-alquilar:hover {
+  cursor: pointer;
+}
 
 /* Estilos de botones laterales */
 /* .wrapper > section > a {
