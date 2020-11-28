@@ -327,6 +327,7 @@ class Pelicula extends Conexion
             }
         }
     }
+    
 
     public function like($user)
     {
@@ -350,6 +351,73 @@ class Pelicula extends Conexion
         } else {
             return false;
         }
+    }
+
+    public function verifyCompra($idPelicula, $idUsuario)
+    {
+        try {
+            $sql = "SELECT * FROM compras WHERE idPelicula = ? AND idUsuario = ?";
+        $stmt = $this->conn->prepare($sql);
+        if ($stmt->execute(array($idPelicula, $idUsuario))) {
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            echo $this->conn->error." ".$this->conn->errno;
+        }
+        } catch(Exception $ex) {
+            echo $ex->getMessage();
+            echo $this->conn->error." ".$this->conn->errno;
+        }
+
+    }
+
+    public function comprar($user, $fecha)
+    {
+        $sql = "INSERT INTO compras VALUES(NULL, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt->execute(array($user, $this->get_Id_Pelicula(), $fecha))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function verifyAlquiler($idPelicula, $idUsuario)
+    {
+        $sql = "SELECT * FROM alquileres WHERE idPelicula = ? AND idUsuario = ?";
+        $stmt = $this->conn->prepare($sql);
+        if ($stmt->execute(array($idPelicula, $idUsuario))) {
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function alquilar($user, $fechaEntrega, $fechaDevolucion)
+    {
+        $sql = "INSERT INTO alquileres VALUES(NULL, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt->execute(array($user, $this->get_Id_Pelicula(), $fechaEntrega, $fechaDevolucion))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function stockUpdate($idPelicula) {
+        $sql = "UPDATE peliculas SET stock = stock -1 WHERE idPelicula = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute(array($idPelicula));
     }
 
     public function Favoritos($user)
