@@ -112,4 +112,8 @@ h1 {
   100% {margin-left: -100%;}
 }
 
+.img_titulo{
 
+  width: 40px;
+  height: auto;
+}
