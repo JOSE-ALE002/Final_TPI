@@ -1,7 +1,10 @@
 <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) {
     header("Location: " . BASE_DIR . "Home/home");
 } else { ?>
-    <section class="containerLogin">        
+    <section class="containerLogin">   
+        <div class="container pt-5">
+            <a href="<?= BASE_DIR ?>">Volver</a>
+        </div>
         <div class="form-container">
             <h2>Login</h2>
             <form action="<?= BASE_DIR ?>Home/login" method="POST">
