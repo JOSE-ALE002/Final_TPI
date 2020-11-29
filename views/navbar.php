@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div class="row w-100">
         <div class="col-md-3">
-          <span class="navbar-brand mb-0 h1"><span><img class="img_titulo" src="<?= BASE_DIR . "assets/img/palomadas_logo.png" ?>" alt="Logo" /></span> Cine<span class="text-danger" >Palomadas</span>HD</span>
+          <span class="navbar-brand mb-0 h1"><a href="<?= BASE_DIR ?>" class="text-decoration-none"><span><img class="img_titulo" src="<?= BASE_DIR . "assets/img/palomadas_logo.png" ?>" alt="Logo" /></span> Cine<span class="text-danger" >Palomadas</span>HD</a></span></span>
         </div>
         <div class="col-md-6">
           <form class="form-inline">
