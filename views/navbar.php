@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div class="row w-100">
         <div class="col-md-3">
-          <span class="navbar-brand mb-0 text-danger h1">CinePalomadasHD</span>
+          <span class="navbar-brand mb-0 h1"><span><img class="img_titulo" src="<?= BASE_DIR . "assets/img/palomadas_logo.png" ?>" alt="Logo" /></span> Cine<span class="text-danger">Palomadas</span>HD</span>
         </div>
         <div class="col-md-6">
           <form class="form-inline">
@@ -25,7 +25,7 @@
                 <?php if ($_SESSION["rol"] == "Usuario") : ?>
                   <a class="nav-link" href="<?= BASE_DIR . "Home/favoritos&idUser=" . $_SESSION["id"] ?>">
                     Peliculas Favoritas
-                  </a>                  
+                  </a>
                 <?php endif ?>
               <?php } else { ?>
                 <a class="nav-link" href="<?= BASE_DIR . "Home/login" ?>">Log In</a>
