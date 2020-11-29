@@ -3,7 +3,7 @@ const verificar = () => {
     let btnComprar = document.querySelector(".btn-comprar");
     let btnAlquilar = document.querySelector(".btn-alquilar");
 
-    if(btnComprar && btnAlquilar) {
+    if(btnComprar || btnAlquilar) {
     
         btnComprar.addEventListener("click", comprar);
         btnAlquilar.addEventListener("click", alquilar);
