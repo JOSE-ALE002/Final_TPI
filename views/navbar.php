@@ -17,15 +17,15 @@
               <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) { ?>
                 <?php if ($_SESSION["rol"] != "Usuario") : ?>
                   <a class="nav-link" href="<?= BASE_DIR . "Pelicula/save" ?>">Agregar Pelicula</a>
+                  <a class="nav-link active" href="<?= BASE_DIR . "Home/Salir" ?>">
+                    Salir
+                  </a>
                 <?php endif ?>
 
                 <?php if ($_SESSION["rol"] == "Usuario") : ?>
                   <a class="nav-link" href="<?= BASE_DIR . "Home/favoritos&idUser=" . $_SESSION["id"] ?>">
                     Peliculas Favoritas
-                  </a>
-                  <a class="nav-link active" href="<?= BASE_DIR . "Home/Salir" ?>">
-                    Salir
-                  </a>
+                  </a>                  
                 <?php endif ?>
               <?php } else { ?>
                 <a class="nav-link" href="<?= BASE_DIR . "Home/login" ?>">Log In</a>
