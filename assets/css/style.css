@@ -32,8 +32,10 @@ h1 {
 }
 .wrapper > section > .item img {
   max-height: 400px;
+  min-height: 400px;
   width: 100%;
 }
+
 .wrapper > section > .item:hover {
   margin: 0 20px;
   transform: scale(1.1);
