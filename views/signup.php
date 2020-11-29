@@ -7,27 +7,27 @@
             <h2>Registrarse Como Usuario</h2>
             <form method="POST">
                 <div class="control">
-
+                <i class="fas fa-font"></i>
                     <input type="text" name="nombre" placeholder="Nombre" required>
                 </div>
 
                 <div class="control">
-
+                <i class="fas fa-font"></i>
                     <input type="text" name="apellido" placeholder="Apellido" required>
                 </div>
 
                 <div class="control">
-
+                <i class="fas fa-map"></i>
                     <input type="text" name="direccion" placeholder="Dirección" required>
                 </div>
 
                 <div class="control">
-
+                <i class="fas fa-at"></i>
                     <input type="email" name="email" placeholder="Email" required>
                 </div>
 
                 <div class="control">
-
+                <i class="fas fa-key"></i>
                     <input type="password" name="contra" placeholder="Contraseña" required>
                 </div>
 
