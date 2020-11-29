@@ -413,7 +413,7 @@ class Pelicula extends Conexion
         }
     }
 
-    private function stockUpdate($idPelicula) {
+    public function stockUpdate($idPelicula) {
         $sql = "UPDATE peliculas SET stock = stock -1 WHERE idPelicula = ?";
         $stmt = $this->conn->prepare($sql);
 
