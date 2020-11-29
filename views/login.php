@@ -17,6 +17,11 @@
 
                 <input type="submit" value="Sign in" />
 
+                <div class="container">
+                    <h6 class="text-white text-center">¿No estas registrado?</h6>
+                    <a href="<?= BASE_DIR ?>/Home/signup" class="d-block btn-sm text-center">Crear una cuenta</a>
+                </div>
+
                 <div id="error" class="alert alert-danger d-none" role="alert">
                     Error! usuario o contraseña incorrectos
                 </div>
