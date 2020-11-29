@@ -23,7 +23,9 @@
                 ?>
 
                 <div class="row col-12">
-                    <?php if(!$peliculaAux->verifyCompra($movie["idPelicula"], $_SESSION["id"])) { ?>
+                    <?php if(!isset($_SESSION["id"])) { ?>
+                        <a href="<?php echo BASE_DIR."Home/login"; ?>" class="btn btn-success" data-precio="<?php echo $movie['precioCompra'];?>">Comprar: $ <?= $movie["precioCompra"]; ?></a>
+                    <?php } else if(!$peliculaAux->verifyCompra($movie["idPelicula"], $_SESSION["id"])) { ?>
                         <a class="btn btn-success btn-comprar" data-precio="<?php echo $movie['precioCompra'];?>">Comprar: $ <?= $movie["precioCompra"]; ?></a>
                     <?php } else { ?>
                         <p class="text-success">Ya compro esta pelicula</p>
@@ -31,7 +33,9 @@
                 </div>
 
                 <div class="row col-12 mt-3">
-                    <?php if(!$peliculaAux->verifyAlquiler($movie["idPelicula"], $_SESSION["id"])) { ?>
+                   <?php if(!isset($_SESSION["id"])) { ?>
+                     <a href="<?php echo BASE_DIR."Home/login"?>"; class="btn btn-danger">Alquilar: $ <?= $movie["precioAlquiler"]; ?></a>
+                   <?php } else if(!$peliculaAux->verifyAlquiler($movie["idPelicula"], $_SESSION["id"])) { ?>
                         <a class="btn btn-danger btn-alquilar" data-precio="<?php echo $movie['precioAlquiler'];?>">Alquilar: $ <?= $movie["precioAlquiler"]; ?></a>
                     <?php } else { ?>
                         <p class="text-success">Ya alquilo esta pelicula</p>
