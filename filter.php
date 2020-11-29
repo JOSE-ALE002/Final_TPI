@@ -10,26 +10,30 @@
   
     $filter = $_REQUEST['movies'];
 
-    if($_REQUEST['popularity'] == '0' ){
-      $sort = ['title'=>$_REQUEST['orderBy']];
+    if(isset($_REQUEST['popularity'])){
+      if($_REQUEST['popularity'] == '0' ){
+        $sort = ['title'=>$_REQUEST['orderBy']];
+      }else{
+        $sort = ['popularity'=>$_REQUEST['popularity']];
+      }
     }else{
-      $sort = ['popularity'=>$_REQUEST['popularity']];
+      $sort = ['title'=>$_REQUEST['orderBy']];
     }
     
     $moviesList = $pelicula->searchFilter($filter, $sort);
 
 
     if(empty($moviesList)){
-      $html .= '<h2 class="text-danger">No hay coincidencias!!!</h2>';
+      $html .= '<h2 class="text-danger mt-5">No hay coincidencias!!!</h2>';
     }else{
 
       $html .= '<div class="row px-1">';
       foreach ($moviesList as $key) :
       $html .= '
-      <div class="col-md-3 px-1 div-movie">
+      <div class="row px-1 div-movie">
       <div class="card" style="  background-color: #000;">
-                  <a href="'.BASE_DIR ."Pelicula/movie&id=" . $key["idPelicula"].'"><img src="'.$key["imagen"].'" style="width: 100%; height: 26rem;"/></a>
-                  <div class="card-body text-warning">
+        <a href="'.BASE_DIR ."Pelicula/movie&id=" . $key["idPelicula"].'"><img src="'.$key["imagen"].'" width="300" height="400"/></a>
+        <div class="card-body text-warning">
                   <div class="row">';
                   if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) {
 
@@ -105,7 +109,7 @@
 
     if($filter == 'option1'){
       $availability = -1;
-      $moviesList = $pelicula->ordenamiento(2);
+      //$moviesList = $pelicula->ordenamiento(2);
       $moviesList = $pelicula->showMoviesAdmin($search, $availability);
     }else if($filter == 'option2'){
       $availability = 1;

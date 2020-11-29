@@ -1,9 +1,31 @@
 get_Movies();
 
-(() => {	
-    document.getElementById('search').addEventListener('input', async function(){
-			get_Movies();
-	});
+const mainContainer = document.getElementById('main-container')
+var slideBar = mainContainer.innerHTML;
+
+document.getElementById('search').addEventListener('input', async function(){
+	const valueSearch = document.getElementById('search').value
+
+	if(valueSearch == ""){
+		mainContainer.innerHTML = slideBar;
+		get_Movies();
+	}else{
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}
+		const request = await fetch(`/Final_TPI/filter.php?movies=${valueSearch}`)
+		const selectOptions = await request.text()
+		mainContainer.innerHTML = selectOptions
+	
+		let likesCount = document.querySelectorAll(".like-count");
+		likesCount.forEach(likeBtn => likeBtn.addEventListener("click", likeOrDislike));
+	}
+});
+
+(() => {
 
 	document.getElementById('inputGroupSelect04').addEventListener('change', async (event) => {
 		document.getElementById('defaultCheck1').checked = 0
