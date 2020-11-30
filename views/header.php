@@ -7,6 +7,11 @@
      <link rel="icon" href="<?= BASE_DIR ?>assets/img/icon.ico">
      
     <!-- Required meta tags -->
+
+     <!-- Icono -->
+     <link rel="icon" href="<?= BASE_DIR ?>assets/img/icon.ico">
+
+     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

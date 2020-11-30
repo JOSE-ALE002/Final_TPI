@@ -24,7 +24,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(5, auto);
   margin: 20px 0;
-  animation: cambio 20s infinite ease;  
+  animation: cambio 20s infinite ease;
 }
 .wrapper > section > .item {
   padding: 0 2px;
@@ -50,7 +50,8 @@ h1 {
   z-index: 1000;
 }
 
-.btn-comprar:hover, .btn-alquilar:hover {
+.btn-comprar:hover,
+.btn-alquilar:hover {
   cursor: pointer;
 }
 
@@ -100,20 +101,27 @@ h1 {
 }
 
 .btn-jumbotron:hover {
-	background: #fff;
-	color: #000;
+  background: #fff;
+  color: #000;
 }
 
 @keyframes cambio {
-  0% {margin-left: 0;}
-  45% {margin-left: 0;}
+  0% {
+    margin-left: 0;
+  }
+  45% {
+    margin-left: 0;
+  }
 
-  50% {margin-left: -100%;}
-  100% {margin-left: -100%;}
+  50% {
+    margin-left: -100%;
+  }
+  100% {
+    margin-left: -100%;
+  }
 }
 
-.img_titulo{
-
+.img_titulo {
   width: 40px;
   height: auto;
 }

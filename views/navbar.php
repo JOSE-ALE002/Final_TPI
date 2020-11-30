@@ -25,7 +25,7 @@
                 <?php if ($_SESSION["rol"] == "Usuario") : ?>
                   <a class="nav-link" href="<?= BASE_DIR . "Home/favoritos&idUser=" . $_SESSION["id"] ?>">
                     Peliculas Favoritas
-                  </a>                  
+                  </a>
                 <?php endif ?>
               <?php } else { ?>
                 <a class="nav-link" href="<?= BASE_DIR . "Home/login" ?>">Log In</a>
