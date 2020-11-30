@@ -135,7 +135,7 @@
             <!-- Codigo para el resto de las pelis-->
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-2">
+                    <nav id="sidebarMenu" class="col-md-2 bg-light d-md-block sidebar collapse">
                         <div class="sidebar-sticky pt-3">
                             <form action="">
                                 <div class="input-group pt-3">
@@ -188,7 +188,11 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-warning">
+<<<<<<< HEAD
                                         <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+=======
+                                        <a href="<?php echo BASE_DIR?>Home/login" class="like-count text-danger text-decoration-none" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+>>>>>>> 3fe0979dcc403efae14cc4a7efd63aa242c1e875
                                             <i class="far fa-heart"></i>
                                             <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                         </a>
@@ -208,7 +212,11 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-warning">
+<<<<<<< HEAD
                                         <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+=======
+                                        <a href="<?php echo BASE_DIR?>Home/login" class="like-count text-danger text-decoration-none" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+>>>>>>> 3fe0979dcc403efae14cc4a7efd63aa242c1e875
                                             <i class="far fa-heart"></i>
                                             <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                         </a>
@@ -245,7 +253,8 @@
             <!-- Codigo para el resto de las pelis sin secion-->
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-2 d-md-block bg-light sidebar collapse">
+                    <nav id="sidebarMenu" class="col-md-2 bg-light d-md-block sidebar collapse"
+                    style="background-color: #1a1a1a;">
                         <div class="sidebar-sticky pt-3">
                             <form action="">
                                 <div class="input-group pt-3">

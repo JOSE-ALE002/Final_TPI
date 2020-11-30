@@ -13,7 +13,10 @@
         <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) { ?>
           <?php if ($_SESSION["rol"] != "Usuario") : ?>
             <div class="navbar-nav ml-auto">
-              <a class="nav-link" href="<?= BASE_DIR . "Pelicula/save" ?>">Agregar Pelicula</a>
+              <a class="nav-link" href="<?= BASE_DIR . "Pelicula/save" ?>">
+              <i class="fas fa-plus-circle "></i>
+              Agregar Pelicula
+            </a>
               <a class="nav-link active" href="<?= BASE_DIR . "Home/Salir" ?>">
                 Salir
               </a>
