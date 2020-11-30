@@ -1,0 +1,127 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+}
+
+h1 {
+  font-family: Arial;
+  color: red;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 100%);
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+.wrapper > section {
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  margin: 20px 0;
+  animation: cambio 20s infinite ease;
+}
+.wrapper > section > .item {
+  padding: 0 2px;
+  transition: 250ms all;
+}
+.wrapper > section > .item img {
+  max-height: 400px;
+  min-height: 400px;
+  width: 100%;
+}
+
+.wrapper > section > .item:hover {
+  margin: 0 20px;
+  transform: scale(1.1);
+}
+
+.div-movie {
+  transition: 300ms all;
+}
+
+.div-movie:hover {
+  transform: scale(1.1, 1.1);
+  z-index: 1000;
+}
+
+.btn-comprar:hover,
+.btn-alquilar:hover {
+  cursor: pointer;
+}
+
+/* Estilos de botones laterales */
+/* .wrapper > section > a {
+  position: absolute;
+  color: #fff;
+  text-decoration: none;
+  font-size: 6em;
+  background: black;
+  width: 80px;
+  padding: 20px;
+  text-align: center;
+  z-index: 1;
+}
+.wrapper > section > a:nth-of-type(1) {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, black 100%);
+}
+.wrapper > section > a:nth-of-type(2) {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, black 100%);
+} */
+
+.jumbotron {
+  background-image: url("https://images3.alphacoders.com/801/thumb-1920-801817.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 600px;
+  margin-top: 72px;
+}
+
+.btn-jumbotron {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 0.31em;
+  padding: 0.93em 1.87em;
+  color: #fff;
+  margin-right: 1.25em;
+  cursor: pointer;
+  transition: 0.3s ease all;
+  font-size: 1.12em;
+}
+
+.btn-jumbotron:hover {
+  background: #fff;
+  color: #000;
+}
+
+@keyframes cambio {
+  0% {
+    margin-left: 0;
+  }
+  45% {
+    margin-left: 0;
+  }
+
+  50% {
+    margin-left: -100%;
+  }
+  100% {
+    margin-left: -100%;
+  }
+}
+
+.img_titulo {
+  width: 40px;
+  height: auto;
+}

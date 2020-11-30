@@ -6,7 +6,7 @@ class HomeController
     {
         require_once "models/Pelicula.php";
         $pelicula = new Pelicula();
-        $pelis = $pelicula->showMovies();
+        $pelis = $pelicula->destacados();
 
         require_once "views/home.php";               
     }
@@ -44,7 +44,10 @@ class HomeController
             $user->setEmail($_POST["email"]);
             $user->setPassword($_POST["contra"], 1);
 
-            return $user->signup();
+            if($user->signup()){
+                $user->setPassword($_POST["contra"], 2);
+                $user->login();
+            }
         }
     }
 
@@ -87,7 +90,7 @@ class HomeController
         if($_GET) {
             $pelis = $pelicula->Favoritos($_GET["idUser"]);
             require_once 'views/favoritas.php';
-            var_dump($pelis);
+            // var_dump($pelis);
         }
         
     }
