@@ -1,6 +1,5 @@
 <main>
-    
-    <div class="card mb-3 text-light" style="background-color: #212F3C;">
+    <div class="card mb-3 text-light" style="background-color: #212F3C; padding: 120px;">
     <div class="row no-gutters">
         <div class="col-md-4">
         <img src="<?= $movie["imagen"] ?>" class="card-img" alt="<?= $movie["nombre"] ?>"  style="max-width: 300px;">

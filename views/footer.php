@@ -10,7 +10,7 @@
       </figure>
       <ul class="list-inline enlaces py-1">
         <li class="list-inline-item footer-menu">
-          <a href="index.php">Inicio</a>
+          <a href="<?= BASE_DIR ?>">Inicio</a>
         </li>
         <li class="list-inline-item footer-menu">
           <a href="productos.php">Categorias</a>
