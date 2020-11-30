@@ -3,6 +3,10 @@ get_Movies();
 const mainContainer = document.getElementById('main-container')
 var slideBar = mainContainer.innerHTML;
 
+document.getElementById("buscar").addEventListener('click', function () {
+	document.getElementById("search").classList.toggle("d-none");
+});
+
 document.getElementById('search').addEventListener('input', async function(){
 	const valueSearch = document.getElementById('search').value
 

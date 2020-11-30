@@ -125,3 +125,15 @@ h1 {
   width: 40px;
   height: auto;
 }
+
+
+.search_peli {
+  border-radius: none;
+  border: 0.2mm solid white;
+  padding: 2px 10px;
+  outline: none;
+  background-color: white;
+  color: #000;
+  transition: 0.1s ease all;
+  margin-right: 20px;
+}
