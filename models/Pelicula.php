@@ -414,7 +414,7 @@ class Pelicula extends Conexion
     }
 
     public function stockUpdate($idPelicula) {
-        $sql = "UPDATE peliculas SET stock = stock -1 WHERE idPelicula = ?";
+        $sql = "UPDATE peliculas SET stock = stock -1 WHERE idPelicula = ? AND stock > 0";
         $stmt = $this->conn->prepare($sql);
 
         $stmt->execute(array($idPelicula));
@@ -438,6 +438,21 @@ class Pelicula extends Conexion
         }
 
         return $fav;
+    }
+
+    public function destacados()
+    {
+        $sql = "SELECT peliculas.* FROM peliculas ";
+        $sql .= "INNER JOIN valoraciones ON peliculas.idPelicula = valoraciones.idPelicula ";
+        $sql .= "WHERE peliculas.idPelicula = valoraciones.idPelicula ";
+        $sql .= "GROUP BY peliculas.idPelicula ORDER BY COUNT(*) DESC LIMIT 10";
+
+        $list = $this->conn->prepare($sql);
+
+        $destacados = $list->execute();
+        $destacados = $list->fetchAll(PDO::FETCH_ASSOC);
+
+        return $destacados;
     }
 
     public function ordenamiento($valor)

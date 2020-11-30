@@ -54,3 +54,4 @@ const alquilar = async (event) => {
 }
 
 verificar();
+ScrollReveal().reveal('.headline');

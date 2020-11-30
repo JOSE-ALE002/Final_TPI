@@ -31,7 +31,7 @@
       foreach ($moviesList as $key) :
       $html .= '
       <div class="row px-1 div-movie">
-      <div class="card" style="  background-color: #000;">
+      <div class="card headline" style="  background-color: #000;">
         <a href="'.BASE_DIR ."Pelicula/movie&id=" . $key["idPelicula"].'"><img src="'.$key["imagen"].'" width="300" height="400"/></a>
         <div class="card-body text-warning">
                   <div class="row">';
