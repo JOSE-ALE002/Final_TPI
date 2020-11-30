@@ -1,42 +1,34 @@
-<?php
-    if (!empty($_POST) && isset($_POST["email"])) {
-        require_once "controllers/HomeController.php";
-        $login = new HomeController();
-        
-        if($login->login($_POST["email"], $_POST["contra"]))
-        {
-            header("Location: " . BASE_DIR."Home/home");
-        }
-        else
-        {
-            $loginErr = "<p>Error! usuario o contraseña incorrectos</p>";
-        }
-    }
-    else
-    {
-        $loginErr = "";
-    }
-?>
-<main>
-    <div class="row">
-        <div class="mx-auto col-md-6">
-            <h1>Login Usuario</h1>
-            <form method="POST">
-            <div class="form-group">
-                    <label for="">Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="Ingrese email" required>
+<?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) {
+    header("Location: " . BASE_DIR . "Home/home");
+} else { ?>
+    <section class="containerLogin">   
+        <div class="container pt-5">
+            <a href="<?= BASE_DIR ?>">Volver</a>
+        </div>
+        <div class="form-container">
+            <h2>Login</h2>
+            <form action="<?= BASE_DIR ?>Home/login" method="POST">
+                <div class="control">
+                    <i class="fas fa-user"></i>
+                    <input type="email" name="email" placeholder="Username or Email" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password" class="form-control" name="contra" placeholder="Ingrese contraseña" required>
+                <div class="control">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="contra" placeholder="Password" required>
                 </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                <input type="submit" value="Sign in" />
+
+                <div class="container">
+                    <h6 class="text-white text-center">¿No estas registrado?</h6>
+                    <a href="<?= BASE_DIR ?>/Home/signup" class="d-block btn-sm text-center">Crear una cuenta</a>
                 </div>
-                <?=$loginErr?>
+
+                <div id="error" class="alert alert-danger d-none" role="alert">
+                    Error! usuario o contraseña incorrectos
+                </div>
             </form>
         </div>
-    </div>
-</main>
+    </section>
+<?php } ?>

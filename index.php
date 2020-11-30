@@ -10,9 +10,14 @@ if (!empty($_GET['controller'])) {
 
 $action = DEFAULT_ACTION;
 
-
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
+
+    if($action != "login" && $action != "signup") {
+        require_once "views/navbar.php";
+    }
+} else {
+    require_once "views/navbar.php";
 }
 
 $fullController = CONTROLLERS_DIR . $controller . "Controller.php";
