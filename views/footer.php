@@ -13,10 +13,10 @@
           <a href="index.php">Inicio</a>
         </li>
         <li class="list-inline-item footer-menu">
-          <a href="productos.php">Productos</a>
+          <a href="productos.php">Categorias</a>
         </li>
         <li class="list-inline-item footer-menu">
-          <a href="contacto.php">Contacto</a>
+          <a href="contacto.php">About</a>
         </li>
       </ul>
 

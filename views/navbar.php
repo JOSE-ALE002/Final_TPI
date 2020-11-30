@@ -1,6 +1,6 @@
-<div class="container-fluid bg-dark fixed-top">
+<div class="container-fluid fixed-top" style="background-color: #1a1a1a;">
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <nav class="navbar navbar-expand-lg navbar-dark py-3" style="background-color: #1a1a1a;">
       <a class="navbar-brand" href="<?= BASE_DIR ?>">
         <img class="img_titulo" src="<?= BASE_DIR ?>assets/img/palomadas_logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
         CinePalomadasHD
