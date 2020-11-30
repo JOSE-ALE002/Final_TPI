@@ -102,9 +102,8 @@
     $search = $_REQUEST["searchAdmin"];
 
     if($filter == 'option1'){
-      $availability = -1;
-      $moviesList = $pelicula->ordenamiento(2);
-      // $moviesList = $pelicula->showMoviesAdmin($search, $availability);
+      $availability = -1;      
+      $moviesList = $pelicula->showMoviesAdmin($search, $availability);
     }else if($filter == 'option2'){
       $availability = 1;
       $moviesList = $pelicula->showMoviesAdmin($search, $availability);

@@ -464,33 +464,27 @@ class Pelicula extends Conexion
         return $destacados;
     }
 
-    public function ordenamiento($valor)
+    public function ordenamiento()
     {
-        if ($valor == 1) {
+        $original = $this->orden($this->showAllMovies());
+        $arr = [];
 
-            $original = $this->orden($this->showAllMovies());
-            $arr = [];
-
-            $lenght = count($original);
-            for ($i = 0; $i < $lenght; $i++) {
-                $arr[$i] = $i + 1;
-            }
-
-            $index = 0;
-            foreach ($original as $key) {
-                $sql = "UPDATE peliculas SET idPelicula = ? WHERE idPelicula = ?";
-                $stmt = $this->conn->prepare($sql);
-                $stmt->execute(array($arr[$index], $key["idPelicula"]));
-                $index++;
-            }
-
-            $sql = "ALTER TABLE peliculas AUTO_INCREMENT =" . ($lenght - 1);
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
-        } else {            
-            $original = $this->orden($this->showAllMovies());
-            return $original;
+        $lenght = count($original);
+        for ($i = 0; $i < $lenght; $i++) {
+            $arr[$i] = $i + 1;
         }
+
+        $index = 0;
+        foreach ($original as $key) {
+            $sql = "UPDATE peliculas SET idPelicula = ? WHERE idPelicula = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(array($arr[$index], $key["idPelicula"]));
+            $index++;
+        }
+
+        $sql = "ALTER TABLE peliculas AUTO_INCREMENT =" . ($lenght - 1);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
     }
 
     public function orden($arr = [])
@@ -567,7 +561,7 @@ class Pelicula extends Conexion
             $resultado = $list->execute();
         }
 
-        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
+        $resultado = $this->orden($list->fetchAll(PDO::FETCH_ASSOC));
 
         return $resultado;
     }
