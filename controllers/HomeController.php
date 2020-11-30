@@ -6,7 +6,7 @@ class HomeController
     {
         require_once "models/Pelicula.php";
         $pelicula = new Pelicula();
-        $pelis = $pelicula->showMovies();
+        $pelis = $pelicula->destacados();
 
         require_once "views/home.php";               
     }

@@ -230,6 +230,15 @@ class Pelicula extends Conexion
         return $resultado;
     }
 
+    public function showAllMovies()
+    {
+        $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
+        $list = $this->conn->prepare($sql_leer);
+        $list->execute();
+
+        return $list->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function save()
     {
 
@@ -327,7 +336,7 @@ class Pelicula extends Conexion
             }
         }
     }
-    
+
 
     public function like($user)
     {
@@ -357,22 +366,21 @@ class Pelicula extends Conexion
     {
         try {
             $sql = "SELECT * FROM compras WHERE idPelicula = ? AND idUsuario = ?";
-        $stmt = $this->conn->prepare($sql);
-        if ($stmt->execute(array($idPelicula, $idUsuario))) {
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($result) {
-                return true;
+            $stmt = $this->conn->prepare($sql);
+            if ($stmt->execute(array($idPelicula, $idUsuario))) {
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($result) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                echo $this->conn->error . " " . $this->conn->errno;
             }
-        } else {
-            echo $this->conn->error." ".$this->conn->errno;
-        }
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             echo $ex->getMessage();
-            echo $this->conn->error." ".$this->conn->errno;
+            echo $this->conn->error . " " . $this->conn->errno;
         }
-
     }
 
     public function comprar($user, $fecha)
@@ -413,8 +421,9 @@ class Pelicula extends Conexion
         }
     }
 
-    public function stockUpdate($idPelicula) {
-        $sql = "UPDATE peliculas SET stock = stock -1 WHERE idPelicula = ?";
+    public function stockUpdate($idPelicula)
+    {
+        $sql = "UPDATE peliculas SET stock = stock -1 WHERE idPelicula = ? AND stock > 0";
         $stmt = $this->conn->prepare($sql);
 
         $stmt->execute(array($idPelicula));
@@ -440,51 +449,59 @@ class Pelicula extends Conexion
         return $fav;
     }
 
-    public function ordenamiento($valor)
+    public function destacados()
     {
-        if ($valor == 1) {
-            $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
-            $list = $this->conn->prepare($sql_leer);
-            $list->execute();
-            $original = $list->fetchAll(PDO::FETCH_ASSOC);
-            $arr = [];
+        $sql = "SELECT peliculas.* FROM peliculas ";
+        $sql .= "INNER JOIN valoraciones ON peliculas.idPelicula = valoraciones.idPelicula ";
+        $sql .= "WHERE peliculas.idPelicula = valoraciones.idPelicula ";
+        $sql .= "GROUP BY peliculas.idPelicula ORDER BY COUNT(*) DESC LIMIT 10";
 
-            $lenght = count($original);
-            for ($i = 0; $i < $lenght; $i++) {
-                $arr[$i] = $i + 1;
-            }
+        $list = $this->conn->prepare($sql);
 
-            $index = 0;
-            foreach ($original as $key) {
-                $sql = "UPDATE peliculas SET idPelicula = ? WHERE idPelicula = ?";
-                $stmt = $this->conn->prepare($sql);
-                $stmt->execute(array($arr[$index], $key["idPelicula"]));
-                $index++;
-            }
+        $destacados = $list->execute();
+        $destacados = $list->fetchAll(PDO::FETCH_ASSOC);
 
-            $sql = "ALTER TABLE peliculas AUTO_INCREMENT =" . ($lenght - 1);
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
-        } else {
-            $sql_leer = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria)";
-            $list = $this->conn->prepare($sql_leer);
-            $list->execute();
-            $original = $list->fetchAll(PDO::FETCH_ASSOC);
+        return $destacados;
+    }
 
-            for ($i = 1; $i < count($original); $i++) {
-                $clave = $original[$i];
-                $j = $i - 1;
-                //Comparar el valor seleccionado con todos los valores anteriores
-                while ($j >= 0 && $original[$j] > $clave) {
-                    //Insertar el valor donde corresponda
-                    $original[$j + 1] = $original[$j];
-                    $j = $j - 1;
-                }
-                $original[$j + 1] = $clave;                
-            }
+    public function ordenamiento()
+    {
+        $original = $this->orden($this->showAllMovies());
+        $arr = [];
 
-            return $original;
+        $lenght = count($original);
+        for ($i = 0; $i < $lenght; $i++) {
+            $arr[$i] = $i + 1;
         }
+
+        $index = 0;
+        foreach ($original as $key) {
+            $sql = "UPDATE peliculas SET idPelicula = ? WHERE idPelicula = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(array($arr[$index], $key["idPelicula"]));
+            $index++;
+        }
+
+        $sql = "ALTER TABLE peliculas AUTO_INCREMENT =" . ($lenght - 1);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function orden($arr = [])
+    {
+        for ($i = 1; $i < count($arr); $i++) {
+            $clave = $arr[$i];
+            $j = $i - 1;
+            //Comparar el valor seleccionado con todos los valores anteriores
+            while ($j >= 0 && $arr[$j] > $clave) {
+                //Insertar el valor donde corresponda
+                $arr[$j + 1] = $arr[$j];
+                $j = $j - 1;
+            }
+            $arr[$j + 1] = $clave;
+        }
+
+        return $arr;
     }
 
     public function moviesSort($rules)
@@ -531,12 +548,12 @@ class Pelicula extends Conexion
 
     public function showMoviesAdmin($search, $availability)
     {
-        if($availability != -1){
+        if ($availability != -1) {
             $sql = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE (disponibilidad = ?) AND
             (nombre  LIKE '%" . $search . "%' OR descripcion LIKE '%" . $search . "%')";
             $list = $this->conn->prepare($sql);
             $resultado = $list->execute(array($availability));
-        }else{
+        } else {
             $sql = "SELECT * FROM ((peliculas INNER JOIN calidad ON peliculas.idCalidad = calidad.idCalidad) INNER JOIN categoria ON peliculas.idCategoria = categoria.idCategoria) WHERE
             nombre  LIKE '%" . $search . "%' OR descripcion LIKE '%" . $search . "%'";
 
@@ -544,7 +561,7 @@ class Pelicula extends Conexion
             $resultado = $list->execute();
         }
 
-        $resultado = $list->fetchAll(PDO::FETCH_ASSOC);
+        $resultado = $this->orden($list->fetchAll(PDO::FETCH_ASSOC));
 
         return $resultado;
     }

@@ -47,10 +47,8 @@
                               <i class="fas fa-heart"></i>
                               <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
                             </a>
-
                         </span>
                     </div>
-
                     <div class="col">  
                         <span class="float-right text-warning">$' . $key["precioCompra"] . '</span>
                     </div>';
@@ -66,10 +64,8 @@
                             <i class="far fa-heart"></i>
                             <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
                           </a>
-
                       </span>
                     </div>
-
                     <div class="col">  
                         <span class="float-right text-warning">$' . $key["precioCompra"] . '</span>
                     </div>';                        
@@ -81,11 +77,9 @@
                           <span>
                             <i class="far fa-heart"></i>
                           </span>
-
                           <span class="text-warning">'.$pelicula->countLikes($key["idPelicula"]).'</span>
                         </a>
                     </div>
-
                     <div class="col">  
                         <span class="float-right text-warning">$' . $key["precioCompra"] . '</span>
                     </div>';
@@ -108,8 +102,7 @@
     $search = $_REQUEST["searchAdmin"];
 
     if($filter == 'option1'){
-      $availability = -1;
-      //$moviesList = $pelicula->ordenamiento(2);
+      $availability = -1;      
       $moviesList = $pelicula->showMoviesAdmin($search, $availability);
     }else if($filter == 'option2'){
       $availability = 1;
