@@ -26,6 +26,6 @@
 * En caso que a la hora de importar la Base de Datos de un error, se debe de crear una Base de Datos con el nombre "finaltpi" y dentro de esta hacer la importación del archivo "finaltpi.sql", que se encuentra dentro de la carpeta "database" del proyecto.
 
 ###Pagos con paypal
-Para realizar los test de los pagos con paypal se pueden usar la siguiente cuenta para pruebas
+* Para realizar los test de los pagos con paypal se pueden usar la siguiente cuenta para pruebas
 - Correo: comprar-peliculas@gmailcom
 - Contraseña: comprartest
