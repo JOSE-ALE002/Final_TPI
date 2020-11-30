@@ -2,6 +2,9 @@
     header("Location: " . BASE_DIR . "Home/home");
 } else { ?>
     <section class="containerSignup">
+    <div class="container pt-5">
+            <a href="<?= BASE_DIR ?>">Volver</a>
+        </div>
         <div class="row">
             <div class="form-container">
                 <h2>Registrarse Como Usuario</h2>

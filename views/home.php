@@ -1,25 +1,27 @@
 <main>
     <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) : ?>
-        <div class="mx-auto">
+        <div class="mx-auto ">
             <?php if ($_SESSION["rol"] != "Usuario") : ?>                
-                <div class="bg-light p-5 mt-5">
-                    <div class="form-check form-check-inline">
+                <div class=" p-5 mt-5">
+                    <p class=" txt_white text_20">Filtrar por:</p>
+                    <div class="form-check txt_white text_20 form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
                         <label class="form-check-label" for="inlineRadio1">Todas</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check txt_white text_20 form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                         <label class="form-check-label" for="inlineRadio2">Disponible</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check txt_white text_20 form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
                         <label class="form-check-label" for="inlineRadio3">Indisponible</label>
                     </div>
-                    <div class="form-input form-check-inline pt-3">
-                        <input type="text" name="search" id="searchAdmin" placeholder="Buscar...">
+                    <div class="form-input form-check-inline buscar_">
+                        <i class="fas fa-search txt_white"></i>
+                        <input type="text" name="search" id="searchAdmin" class=" buscar_input" placeholder="Buscar...">
                     </div>
                 </div>
-                <section role="main" class="col-md-10 mx-auto" id="results-admin-movies">
+                <section role="main" class="table_container mx-auto" id="results-admin-movies">
                 </section>
             </div>
         <?php endif ?>
