@@ -27,5 +27,5 @@
 
 ###Pagos con paypal:
 * Para realizar los test de los pagos con paypal se pueden usar la siguiente cuenta para pruebas
-- Correo: comprar-peliculas@gmailcom
+- Correo: comprar-peliculas@gmail.com
 - Contraseña: comprartest
