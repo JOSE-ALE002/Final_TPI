@@ -1,25 +1,27 @@
 <main>
     <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) : ?>
-        <div class="mx-auto">
+        <div class="mx-auto ">
             <?php if ($_SESSION["rol"] != "Usuario") : ?>                
-                <div class="bg-light p-5 mt-5">
-                    <div class="form-check form-check-inline">
+                <div class=" p-5 mt-5">
+                    <p class=" txt_white text_20">Filtrar por:</p>
+                    <div class="form-check txt_white text_20 form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
                         <label class="form-check-label" for="inlineRadio1">Todas</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check txt_white text_20 form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                         <label class="form-check-label" for="inlineRadio2">Disponible</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check txt_white text_20 form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
                         <label class="form-check-label" for="inlineRadio3">Indisponible</label>
                     </div>
-                    <div class="form-input form-check-inline pt-3">
-                        <input type="text" name="search" id="searchAdmin" placeholder="Buscar...">
+                    <div class="form-input form-check-inline buscar_">
+                        <i class="fas fa-search txt_white"></i>
+                        <input type="text" name="search" id="searchAdmin" class=" buscar_input" placeholder="Buscar...">
                     </div>
                 </div>
-                <section role="main" class="col-md-10 mx-auto" id="results-admin-movies">
+                <section role="main" class="table_container mx-auto" id="results-admin-movies">
                 </section>
             </div>
         <?php endif ?>
@@ -133,7 +135,7 @@
             <!-- Codigo para el resto de las pelis-->
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-2">
+                    <nav id="sidebarMenu" class="col-md-2 bg-light d-md-block sidebar collapse">
                         <div class="sidebar-sticky pt-3">
                             <form action="">
                                 <div class="input-group pt-3">
@@ -186,7 +188,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-warning">
-                                        <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                        <a href="<?php echo BASE_DIR?>Home/login" class="like-count text-danger text-decoration-none" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                             <i class="far fa-heart"></i>
                                             <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                         </a>
@@ -206,7 +208,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-warning">
-                                        <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                        <a href="<?php echo BASE_DIR?>Home/login" class="like-count text-danger text-decoration-none" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                             <i class="far fa-heart"></i>
                                             <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                         </a>
@@ -243,7 +245,8 @@
             <!-- Codigo para el resto de las pelis sin secion-->
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-2 d-md-block bg-light sidebar collapse">
+                    <nav id="sidebarMenu" class="col-md-2 bg-light d-md-block sidebar collapse"
+                    style="background-color: #1a1a1a;">
                         <div class="sidebar-sticky pt-3">
                             <form action="">
                                 <div class="input-group pt-3">

@@ -1,5 +1,5 @@
 <main>
-    <div class="container">
+    <div class="container" style="margin-top: 100px">
         <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) : ?>
             <?php if ($_SESSION["rol"] == "Usuario") : ?>
                 <div class="row">

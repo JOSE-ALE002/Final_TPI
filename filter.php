@@ -116,14 +116,14 @@
       $html .= '<h2 class="text-danger">No se encontraron Peliculas</h2>';
     }else{
       $html .= '
-      <div class="mx-auto bg-secondary">
-      <table class="table table-striped text-center">
+      <div class="mx-auto ">
+      <table class="table_ text-justify bg-secondary">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Imagen</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Descripción</th>
                 <th scope="col">Género</th>
                 <th scope="col">Idioma</th>
                 <th scope="col">Calidad</th>
@@ -139,7 +139,7 @@
         $html .= '
         <tr>
           <td>'. $key["idPelicula"] .'</td>
-          <td><img src="'.$key["imagen"].'" style="width: 100%; height: 7rem;"/></td>
+          <td><img src="'.$key["imagen"].'" style="width: 90px; height: auto;"/></td>
           <td>'. $key["nombre"] .'</td>
           <td>'. $key["descripcion"] .'</td>
           <td>'. $key["nombreCategoria"] .'</td>
