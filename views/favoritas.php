@@ -4,14 +4,14 @@
             <?php if ($_SESSION["rol"] == "Usuario") : ?>
                 <div class="row">
                     <?php foreach ($pelis as $key) : ?>
-                        <div class="col-md-6">
-                            <div class="card mb-3 px-4">
+                        <div class="col-md-4">
+                            <div class="card mb-3 px-4 color-fav">
                                 <div class="row no-gutters">
                                     <div class="col-md-6">
                                         <img src="<?= $key["imagen"] ?>" class="card-img" alt="...">
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="card-body">
+                                    <div class="col-md-6 ">
+                                        <div class="card-body ">
                                             <h5 class="card-title">
                                                 Titulo:
                                                 <?= $key["nombre"] ?>
