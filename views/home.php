@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="container">
-                <h3 class="text-danger">Peliculas recomendadas</h3>
+                <h3 class="text-danger">Peliculas populares</h3>
             </div>
             <div class="wrapper">
                 <section id="section1">
@@ -61,13 +61,13 @@
                                         $p = new Pelicula();
 
                                         if ($p->verifyLike($key["idPelicula"], $_SESSION["id"])) { ?>
-                                            <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                            <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                                 <i class="fas fa-heart"></i>
                                                 <span class="text-warning"><?php echo $p->countLikes($key["idPelicula"]); ?></span>
                                             </a>
                                         <?php
                                         } else { ?>
-                                            <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="dislike">
+                                            <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="dislike">
                                                 <i class="far fa-heart"></i>
                                                 <span class="text-warning"><?php echo $p->countLikes($key["idPelicula"]); ?></span>
                                             </a>
@@ -177,7 +177,7 @@
                 </div>
             </div>
             <div class="container">
-                <h3 class="text-danger">Peliculas recomendadas</h3>
+                <h3 class="text-danger">Peliculas populares</h3>
             </div>
             <div class="wrapper">
                 <section id="section1">
@@ -188,7 +188,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-warning">
-                                        <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                        <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                             <i class="far fa-heart"></i>
                                             <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                         </a>
@@ -208,7 +208,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-warning">
-                                        <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                        <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                             <i class="far fa-heart"></i>
                                             <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                         </a>
