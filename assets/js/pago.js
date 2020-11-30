@@ -3,9 +3,11 @@ const verificar = () => {
     let btnComprar = document.querySelector(".btn-comprar");
     let btnAlquilar = document.querySelector(".btn-alquilar");
 
-    if(btnComprar || btnAlquilar) {
+    if(btnComprar) {
     
         btnComprar.addEventListener("click", comprar);
+    }
+    if(btnAlquilar) {
         btnAlquilar.addEventListener("click", alquilar);
     }
 }
