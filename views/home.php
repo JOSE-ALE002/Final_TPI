@@ -188,7 +188,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-warning">
-                                        <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                        <a href="<?php echo BASE_DIR?>Home/login" class="like-count text-danger text-decoration-none" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                             <i class="far fa-heart"></i>
                                             <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                         </a>
@@ -208,7 +208,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-warning">
-                                        <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                        <a href="<?php echo BASE_DIR?>Home/login" class="like-count text-danger text-decoration-none" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                             <i class="far fa-heart"></i>
                                             <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
                                         </a>
