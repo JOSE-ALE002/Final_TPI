@@ -1,7 +1,7 @@
 <main>
     <?php if (isset($_SESSION["nombre"]) && isset($_SESSION["rol"])) : ?>
         <div class="mx-auto ">
-            <?php if ($_SESSION["rol"] != "Usuario") : ?>                
+            <?php if ($_SESSION["rol"] != "Usuario") : ?>
                 <div class=" p-5 mt-5">
                     <p class=" txt_white text_20">Filtrar por:</p>
                     <div class="form-check txt_white text_20 form-check-inline">
@@ -23,11 +23,11 @@
                 </div>
                 <section role="main" class="table_container mx-auto" id="results-admin-movies">
                 </section>
-            </div>
-        <?php endif ?>
+        </div>
+    <?php endif ?>
 
-        <?php if ($_SESSION["rol"] == "Usuario") : ?>
-            <div id="main-container">
+    <?php if ($_SESSION["rol"] == "Usuario") : ?>
+        <div id="main-container">
             <div class="jumbotron jumbotron-fluid d-flex align-items-center">
                 <div class="container text-white">
                     <h2 class="display-4 font-weight-bold">John Wick 3: Parabellum</h2>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="container">
-                <h3 class="text-danger">Peliculas recomendadas</h3>
+                <h3 class="text-danger">Peliculas populares</h3>
             </div>
             <div class="wrapper">
                 <section id="section1">
@@ -61,13 +61,13 @@
                                         $p = new Pelicula();
 
                                         if ($p->verifyLike($key["idPelicula"], $_SESSION["id"])) { ?>
-                                            <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                            <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
                                                 <i class="fas fa-heart"></i>
                                                 <span class="text-warning"><?php echo $p->countLikes($key["idPelicula"]); ?></span>
                                             </a>
                                         <?php
                                         } else { ?>
-                                            <a href="#" class="like-count text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="dislike">
+                                            <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="dislike">
                                                 <i class="far fa-heart"></i>
                                                 <span class="text-warning"><?php echo $p->countLikes($key["idPelicula"]); ?></span>
                                             </a>
@@ -135,7 +135,7 @@
             <!-- Codigo para el resto de las pelis-->
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-2 bg-light d-md-block sidebar collapse">
+                    <nav id="sidebarMenu" class="col-md-2">
                         <div class="sidebar-sticky pt-3">
                             <form action="">
                                 <div class="input-group pt-3">
@@ -156,72 +156,72 @@
                     <section role="main" class="col-md-10" id="results-movies">
                     </section>
                 </div>
+            <?php endif ?>
         <?php endif ?>
-    <?php endif ?>
 
-    <?php if (!(isset($_SESSION["nombre"]) && isset($_SESSION["rol"]))) : ?>
-        <div id="main-container">
-            <div class="jumbotron jumbotron-fluid d-flex align-items-center">
-                <div class="container text-white">
-                    <h2 class="display-4 font-weight-bold">John Wick 3: Parabellum</h2>
-                    <p class="lead w-50">John Wick escapa luego de matar a un miembro de la asociación internacional de asesinos y, con una recompensa de 14 millones de dólares por su cabeza, es el objetivo de sicarios en todas partes.
-                        Trilogía John Wick</p>
-                    <button class="btn-jumbotron">
-                        <i class="fas fa-play"></i>
-                        <span class="ml-2">Ver trailer</span>
-                    </button>
-                    <button class="btn-jumbotron">
-                        <i class="fas fa-info-circle"></i>
-                        <span class="ml-2">Más informacion</span>
-                    </button>
+        <?php if (!(isset($_SESSION["nombre"]) && isset($_SESSION["rol"]))) : ?>
+            <div id="main-container">
+                <div class="jumbotron jumbotron-fluid d-flex align-items-center">
+                    <div class="container text-white">
+                        <h2 class="display-4 font-weight-bold">John Wick 3: Parabellum</h2>
+                        <p class="lead w-50">John Wick escapa luego de matar a un miembro de la asociación internacional de asesinos y, con una recompensa de 14 millones de dólares por su cabeza, es el objetivo de sicarios en todas partes.
+                            Trilogía John Wick</p>
+                        <button class="btn-jumbotron">
+                            <i class="fas fa-play"></i>
+                            <span class="ml-2">Ver trailer</span>
+                        </button>
+                        <button class="btn-jumbotron">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="ml-2">Más informacion</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="container">
-                <h3 class="text-danger">Peliculas recomendadas</h3>
-            </div>
-            <div class="wrapper">
-                <section id="section1">
-                    <?php foreach ($pelis as $i => $key) : ?>
-                        <?php if ($i < 5) : ?>
-                            <div class="item bg-black">
-                                <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"] ?>"><img src="<?= $key["imagen"] ?>" /></a>
+                <div class="container">
+                    <h3 class="text-danger">Peliculas populares</h3>
+                </div>
+                <div class="wrapper">
+                    <section id="section1">
+                        <?php foreach ($pelis as $i => $key) : ?>
+                            <?php if ($i < 5) : ?>
+                                <div class="item bg-black">
+                                    <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"] ?>"><img src="<?= $key["imagen"] ?>" /></a>
 
-                                <div class="row">
-                                    <div class="col-md-6 text-warning">
-                                        <a href="<?php echo BASE_DIR?>Home/login" class="like-count text-danger text-decoration-none" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
-                                            <i class="far fa-heart"></i>
-                                            <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
-                                        </a>
+                                    <div class="row">
+                                        <div class="col-md-6 text-warning">
+                                            <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                                <i class="far fa-heart"></i>
+                                                <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endif ?>
-                    <?php endforeach ?>
-                </section>
-                <section id="section2">
-                    <?php foreach ($pelis as $i => $key) : ?>
-                        <?php if ($i >= 5 &&  $i < 10) : ?>
-                            <div class="item bg-black">
-                                <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"] ?>">
-                                    <img src="<?= $key["imagen"] ?>" />
-                                </a>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                    </section>
+                    <section id="section2">
+                        <?php foreach ($pelis as $i => $key) : ?>
+                            <?php if ($i >= 5 &&  $i < 10) : ?>
+                                <div class="item bg-black">
+                                    <a href="<?php echo BASE_DIR . "Pelicula/movie&id=" . $key["idPelicula"] ?>">
+                                        <img src="<?= $key["imagen"] ?>" />
+                                    </a>
 
-                                <div class="row">
-                                    <div class="col-md-6 text-warning">
-                                        <a href="<?php echo BASE_DIR?>Home/login" class="like-count text-danger text-decoration-none" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
-                                            <i class="far fa-heart"></i>
-                                            <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
-                                        </a>
+                                    <div class="row">
+                                        <div class="col-md-6 text-warning">
+                                            <a href="#" class="like-count sidebar text-danger" data-idpelicula=<?php echo $key['idPelicula']; ?> data-idusuario="<?php echo $_SESSION['id']; ?>" data-estado="like">
+                                                <i class="far fa-heart"></i>
+                                                <span class="text-warning"><?php echo $pelicula->countLikes($key["idPelicula"]); ?></span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endif ?>
-                    <?php endforeach ?>
-                </section>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                    </section>
 
-                <!-- SECCION OPCIONAL -->
+                    <!-- SECCION OPCIONAL -->
 
-                <!-- <section id="section3">
+                    <!-- <section id="section3">
                 <a href="#section2" class="arrow__btn">‹</a>
                 <div class="item">
                     <img src="https://occ-0-243-299.1.nflxso.net/dnm/api/v5/rendition/412e4119fb212e3ca9f1add558e2e7fed42f8fb4/AAAABRr4YxdaABuAuH_3FmSQZn7BCvLp-UUPsXE9MiYpvFP3CSUHV2zOew5oVqKqqdaOd3tbFVS0Uf67uIs7_eZydlCghg4nK0nMatRpPImABwTOhnNzCLCxdKrua7pPIcPCZqBYTeAO5g.jpg" />
@@ -240,32 +240,31 @@
                 </div>
                 <a href="#section1" class="arrow__btn">›</a>
             </section> -->
-            </div>
+                </div>
 
-            <!-- Codigo para el resto de las pelis sin secion-->
-            <div class="container-fluid">
-                <div class="row">
-                    <nav id="sidebarMenu" class="col-md-2 bg-light d-md-block sidebar collapse"
-                    style="background-color: #1a1a1a;">
-                        <div class="sidebar-sticky pt-3">
-                            <form action="">
-                                <div class="input-group pt-3">
-                                    <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                        <option value="ASC" selected>Ascendente</option>
-                                        <option value="DESC">Descendente</option>
-                                    </select>
-                                </div>
-                                <div class="form-check pt-3">
-                                    <input class="form-check-input" type="checkbox" value="DESC" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Mas Populares
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </nav>
-                    <section role="main" class="col-md-10" id="results-movies">
-                    </section>
-        </div>
-    <?php endif ?>
+                <!-- Codigo para el resto de las pelis sin secion-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <nav id="sidebarMenu" class="col-md-2 d-md-block bg-light sidebar collapse">
+                            <div class="sidebar-sticky pt-3">
+                                <form action="">
+                                    <div class="input-group pt-3">
+                                        <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                            <option value="ASC" selected>Ascendente</option>
+                                            <option value="DESC">Descendente</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-check pt-3">
+                                        <input class="form-check-input" type="checkbox" value="DESC" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Mas Populares
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                        </nav>
+                        <section role="main" class="col-md-10" id="results-movies">
+                        </section>
+                    </div>
+                <?php endif ?>
 </main>

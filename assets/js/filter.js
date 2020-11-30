@@ -72,7 +72,7 @@ async function get_Movies(popularity) {
   resultMovies.innerHTML = selectOptions;
 
   let likesCount = document.querySelectorAll(".like-count");
-
+  console.log(likesCount.length);
   likesCount.forEach((likeBtn) =>
     likeBtn.addEventListener("click", likeOrDislike)
   );
@@ -84,7 +84,7 @@ const likeOrDislike = async (event) => {
   let elementoNombre = event.target.tagName;
   let elementoPresionado = null;
 
-  if (elementoNombre == "svg") {
+  if (elementoNombre == "svg" || elementoNombre == "SPAN") {
     elementoPresionado = event.target.parentElement;
   } else if (elementoNombre == "path") {
     elementoPresionado = event.target.parentElement.parentElement;
@@ -93,10 +93,7 @@ const likeOrDislike = async (event) => {
   }
 
   let datos = new FormData();
-  datos.append(
-    "idPelicula",
-    elementoPresionado.getAttribute("data-idpelicula")
-  );
+  datos.append("idPelicula", elementoPresionado.getAttribute("data-idpelicula"));
   datos.append("idUsuario", elementoPresionado.getAttribute("data-idusuario"));
   datos.append("estado", elementoPresionado.getAttribute("data-estado"));
 
@@ -104,7 +101,7 @@ const likeOrDislike = async (event) => {
     method: "POST",
     body: datos,
   };
-
+  
   const peticion = await fetch("/Final_TPI/like.php", options);
   const response = await peticion.json();
 
@@ -112,11 +109,18 @@ const likeOrDislike = async (event) => {
     let numLikes = response.numLikes;
 
     if (response.accion == "like") {
-      elementoPresionado.setAttribute("data-estado", "like");
-      elementoPresionado.innerHTML = `<i class='fas fa-heart'></i> <span class="text-warning">${numLikes}</span>`;
+      let likeElements = document.querySelectorAll(`[data-idpelicula="${elementoPresionado.getAttribute("data-idpelicula")}"]`);
+      likeElements.forEach(likeBtn => {
+        likeBtn.setAttribute("data-estado", "like");
+        likeBtn.innerHTML =  `<i class='fas fa-heart'></i> <span class="text-warning">${numLikes}</span>`;
+      });  
+      
     } else {
-      elementoPresionado.setAttribute("data-estado", "dislike");
-      elementoPresionado.innerHTML = `<i class='far fa-heart'></i> <span class="text-warning">${numLikes}</span>`;
+      let likeElements = document.querySelectorAll(`[data-idpelicula="${elementoPresionado.getAttribute("data-idpelicula")}"]`);
+      likeElements.forEach(likeBtn => {
+        likeBtn.setAttribute("data-estado", "dislike");
+        likeBtn.innerHTML =  `<i class='far fa-heart'></i> <span class="text-warning">${numLikes}</span>`;
+      }); 
     }
   }
 };
