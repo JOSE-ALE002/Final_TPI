@@ -135,8 +135,7 @@
             <!-- Codigo para el resto de las pelis-->
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="text-white col-md-2 d-md-block sidebar collapse"
-                    style="background-color: #1a1a1a;" >
+                    <nav id="sidebarMenu" class="text-white col-md-2 bg-light d-md-block sidebar collapse">
                         <div class="sidebar-sticky pt-3">
                             <form action="">
                                 <div class="input-group pt-3">
@@ -246,7 +245,7 @@
             <!-- Codigo para el resto de las pelis sin secion-->
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-2 text-white d-md-block sidebar collapse"
+                    <nav id="sidebarMenu" class="col-md-2 text-white bg-light d-md-block sidebar collapse"
                     style="background-color: #1a1a1a;">
                         <div class="sidebar-sticky pt-3">
                             <form action="">
