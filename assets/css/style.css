@@ -223,3 +223,23 @@ table.table_ thead th {
 .color-fav{
   background: #000;
 }
+
+.card-down{
+  margin-top:  15px;
+}
+
+.title-center{
+  text-align: center;
+  color: rgb(212, 212, 212);
+}
+
+.desc-card{
+  text-align: justify;
+  color: rgb(136, 136, 136);
+  
+}
+.line-card{
+  background: rgba(160, 160, 160, 0.541);
+  text-align: center;
+  border-radius: 10px;
+}
