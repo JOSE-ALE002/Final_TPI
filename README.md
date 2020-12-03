@@ -28,12 +28,11 @@
 #### Vista Administrador
 * Para el caso de la vista de administrador, puede usar algunos de los usuarios admin que creamos durante el proceso de prueba o puede optar por ir a la base de datos y cambiar el rol a administrador con los usuarios nuevos o existentes. Estos son algunos de los usuario existentes con los que podria acceder a la vista administrador: 
 
-- Usuario                     Contraseña
+- Usuario------------------------Contraseña
 - Ale@gmail.com ---------------> 123
-- Adolfo@gmail.com ------------> 222
-- Iván@gmail.com --------------> 222
-- Marlon@gmail.com ------------> 222
-- Lemus@gmail.com -------------> 222
+- Ivan@gmail.com --------------> 222
+- Marlon@gmail.com -----------> 222
+- Lemus@gmail.com ------------> 222
 
 ### Pagos con paypal:
 * Para realizar los test de los pagos con paypal se pueden usar la siguiente cuenta para pruebas
