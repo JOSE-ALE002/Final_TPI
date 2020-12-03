@@ -25,6 +25,16 @@
 * Se debe de usar el servidor local Xampp, por lo que los archivos se deben de encontrar en una carpeta con el nombre "Final_TPI" dentro de la carpeta "htdocs" (a menos que se tenga configurado en otra carpeta).
 * En caso que a la hora de importar la Base de Datos de un error, se debe de crear una Base de Datos con el nombre "finaltpi" y dentro de esta hacer la importación del archivo "finaltpi.sql", que se encuentra dentro de la carpeta "database" del proyecto.
 
+#### Vista Administrador
+* Para el caso de la vista de administrador, puede usar algunos de los usuarios admin que creamos durante el proceso de prueba o puede optar por ir a la base de datos y cambiar el rol a administrador con los usuarios nuevos o existentes. Estos son algunos de los usuario existentes con los que podria acceder a la vista administrador: 
+
+- Usuario                     Contraseña
+- Ale@gmail.com ---------------> 123
+- Adolfo@gmail.com ------------> 222
+- Iván@gmail.com --------------> 222
+- Marlon@gmail.com ------------> 222
+- Lemus@gmail.com -------------> 222
+
 ### Pagos con paypal:
 * Para realizar los test de los pagos con paypal se pueden usar la siguiente cuenta para pruebas
 - Correo: comprar-peliculas@gmail.com
